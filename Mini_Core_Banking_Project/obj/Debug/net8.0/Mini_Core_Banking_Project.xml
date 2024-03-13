@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mini_Core_Banking_Project</name>
+    </assembly>
+    <members>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.CreateAccount(Domain.DTO.AccountDTO)">
+            <summary>
+            Create an account here.
+            </summary>
+            <remarks> NOTE:
+                            Null values are not accepted<br/>
+                            For Account Type:<br/> 
+                            1= Savings<br/>
+                            2= Current<br/>
+                          
+            Sample request:
+            
+                POST /Account
+                {
+                    "customerId": "79b0daeb-ae9b-4556-b5ac-cd26112d03ea",
+                    "accountType": 1
+                }
+                 </remarks>
+            <param name="account"></param>
+            <returns> This endpoint return the Account you just created</returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Deposit(System.Guid,System.Double)">
+            <summary>
+            Deposit Money into Customers Account
+            </summary>
+            <remarks>NOTE: 
+                           Account ID cannot be null.<br/>
+                           Amount cannot be null.<br/>
+                           Amount has to be greater than zero.<br/>
+            
+            Sample request:
+            
+                POST /Account
+                {
+                    "accountId": "62b0daeb-dc8b-3445-c4db-bc57017d10de",
+                    "amount": 1000
+                }
+            
+            </remarks>
+            <param name="accountId"></param>
+            <param name="amount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Withdraw(System.Guid,System.Double)">
+            <summary>
+            Withdraw Money from a Customers Account
+            </summary>
+            <remarks>NOTE: 
+                           Account ID cannot be null.<br/>
+                           Amount cannot be null.<br/>
+                           Amount has to be greater than zero.<br/>
+            Sample request:
+            
+                POST /Account
+                {
+                    "accountId": "62b0daeb-dc8b-3445-c4db-bc57017d10de",
+                    "amount": 1000
+                }
+            </remarks>
+            <param name="accountId"></param>
+            <param name="amount"></param>
+            <returns>This endpoints returns Amount exceeds balance or Customer does not exist when it's a bad request</returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.ViewCustomersAccount(System.Guid)">
+            <summary>
+            Get a Customers Account
+            </summary>
+            <param name="customerId"></param>
+            <returns>This endpoint returns all exisiting Customer Accounts</returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Activate(System.Guid)">
+            <summary>
+            Activate a Customers Account
+            </summary>
+            <param name="accountId"></param>
+            <returns>This endpoint returns </returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Deactivate(System.Guid)">
+            <summary>
+            Deactivate Customers Account
+            </summary>
+            <param name="accountId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.DeleteAccount(System.Guid)">
+            <summary>
+            Deletes Customers Account
+            </summary>
+            <param name="customerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.CreateCustomer(Domain.DTO.CreateCustomerDTO)">
+            <summary>
+            Create a Customer here
+            </summary>
+            <remarks> NOTE: For Account Type:<br/> 
+                            1= Savings<br/>
+                            2= Current<br/>
+            Sample Request:
+            
+                POST /Customer
+                {
+                    "firstName": "Alex",
+                    "lastName": "Daniel",
+                    "email": "alexdaniel33@gmail.com",
+                    "address": "22, west avenue",
+                    "phoneNumber": "0812345675",
+                    "accountType": 1
+                }
+                </remarks>
+            <param name="customer"></param>
+            <returns> This endpoint returns the Customer you just created </returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.UpdateCustomer(System.Guid,Domain.DTO.CustomerDTO)">
+            <summary>
+            Update a Customer here 
+            </summary>
+            <remarks>
+            NOTE: All fields have to be updated
+            
+            Sample Request:
+                
+                PUT /Customer
+                {
+                   "firstName": "Alex",
+                    "lastName": "Daniel",
+                    "email": "alexdaniel33@gmail.com",
+                    "address": "22, west avenue",
+                    "phoneNumber": "0812345675"  
+                }
+            </remarks>
+            <param name="customerId"></param>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.ViewCustomers">
+            <summary>
+            View all Customers here 
+            </summary>
+            <returns>This endpoint returns all the Customers you have created</returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.ViewCustomerById(System.Guid)">
+            <summary>
+            View customer by ID here
+            </summary>
+            <param name="customerId"></param>
+            <returns>Returns the specific customer you're looking for</returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.DeleteCustomer(System.Guid)">
+            <summary>
+            Delete Customers here
+            </summary>
+            <param name="customerId"></param>
+            <returns></returns>
+            <repsonse code= '200'> Returns a success response</repsonse>
+            <response code= '400'>If the Customer does not exist</response>
+        </member>
+    </members>
+</doc>

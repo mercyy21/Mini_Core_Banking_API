@@ -1,0 +1,26 @@
+﻿using Domain.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.Accounts.Helper
+{
+    internal class AccountHelper
+    {
+        public Account AccountResponse(Account account)
+        {
+            return new Account
+            {
+                Id = account.Id,
+                CustomerId = account.CustomerId,
+                AccountNumber = account.AccountNumber,
+                AccountType = account.AccountType,
+                Balance = account.Balance,
+                CreatedAt = account.CreatedAt,
+                Status = account.Status
+            };
+        }
+    }
+}

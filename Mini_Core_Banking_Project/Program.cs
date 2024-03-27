@@ -16,9 +16,17 @@ builder.Services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
 builder.Services.AddControllers();
 builder.Services.AddScoped<IMiniCoreBankingDbContext, MiniCoreBankingDbContext>();
 builder.Services.AddDbContext<MiniCoreBankingDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddValidatorsFromAssembly(typeof(CreateCustomerValidator).Assembly);
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviourPipeline<,>));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateCustomerCommandHandler>());
+builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerValidator>();
+//builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviourPipeline<,>));
+//builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateCustomerCommandHandler>());
+foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+{
+    builder.Services.AddMediatR(cfg =>
+    {
+        cfg.RegisterServicesFromAssemblies(assembly);
+        cfg.AddOpenBehavior(typeof(ValidationBehaviourPipeline<,>));
+    });
+}
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 

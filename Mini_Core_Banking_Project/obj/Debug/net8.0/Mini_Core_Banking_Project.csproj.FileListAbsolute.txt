@@ -150,3 +150,4 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\Mini_Core_Banking_Project.sourcelink.json

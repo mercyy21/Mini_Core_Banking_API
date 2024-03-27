@@ -55,7 +55,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new ResponseModel { Message = ex.InnerException.Message.ToString(), Success= false });
+                return BadRequest(new ResponseModel { Message = ex.Message.ToString(), Success= false });
             }
 
         }/// <summary>

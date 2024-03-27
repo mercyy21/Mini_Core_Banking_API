@@ -17,3 +17,4 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\De
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\Debug\net8.0\Infrastructure.pdb
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\Debug\net8.0\Application.runtimeconfig.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\Application.genruntimeconfig.cache
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\Application.sourcelink.json

@@ -13,15 +13,12 @@ namespace Application.Accounts.AccountCommand
     public sealed class ActivateAccountCommandHandler : IRequestHandler<ActivateAccountCommand, ResponseModel>
     {
         private readonly IMiniCoreBankingDbContext _context;
-        private readonly IValidator<ActivateAccountCommand> _validator;
-        public ActivateAccountCommandHandler(IMiniCoreBankingDbContext context, IValidator<ActivateAccountCommand> validator)
+        public ActivateAccountCommandHandler(IMiniCoreBankingDbContext context)
         {
             _context = context;
-            _validator = validator;
         }
         public async Task<ResponseModel> Handle(ActivateAccountCommand command, CancellationToken cancellationToken)
         {
-            _validator.ValidateAndThrow(command);
             //Activate Account
             Account existingAccount = await _context.Accounts.FirstOrDefaultAsync(x => x.Id == command.AccountId);
             if (existingAccount == null)

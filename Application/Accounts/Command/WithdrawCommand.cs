@@ -11,15 +11,12 @@ namespace Application.Accounts.AccountCommand
     public sealed class WithdrawCommandHandler : IRequestHandler<WithdrawCommand, ResponseModel>
     {
         private readonly IMiniCoreBankingDbContext _context;
-        private readonly IValidator<WithdrawCommand> _validator;
-        public WithdrawCommandHandler(IMiniCoreBankingDbContext context, IValidator<WithdrawCommand> validator)
+        public WithdrawCommandHandler(IMiniCoreBankingDbContext context)
         {
             _context = context;
-            _validator = validator;
         }
         public async Task<ResponseModel> Handle(WithdrawCommand command, CancellationToken cancellationToken)
         {
-            _validator.ValidateAndThrow(command);
             //Withdraw Money
             Account existingUser = await _context.Accounts.FirstOrDefaultAsync(y => y.Id == command.AccountId);
             if (existingUser == null)

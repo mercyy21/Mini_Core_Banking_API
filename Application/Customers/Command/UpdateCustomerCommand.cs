@@ -1,9 +1,6 @@
-﻿using Application.Customers.Validator;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.DTO;
 using Domain.Entity;
-using FluentValidation;
-using FluentValidation.Results;
 using Infrastructure.DBContext;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -16,17 +13,14 @@ namespace Application.Customers.CustomerCommand
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
-        private readonly IValidator<UpdateCustomerCommand> _validator;
-        public UpdateCustomerCommandHandler(IMiniCoreBankingDbContext context, IMapper mapper, IValidator<UpdateCustomerCommand> validator)
+        public UpdateCustomerCommandHandler(IMiniCoreBankingDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-            _validator = validator;
         }
 
         public async Task<ResponseModel> Handle(UpdateCustomerCommand command, CancellationToken cancellationToken)
         {
-            _validator.ValidateAndThrow(command);
             //Update Customer
             Customer existingCustomer = await _context.Customers.FirstOrDefaultAsync(x => x.Id == command.CustomerId);
             if (existingCustomer == null)

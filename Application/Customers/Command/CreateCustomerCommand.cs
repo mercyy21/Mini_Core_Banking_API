@@ -18,19 +18,16 @@ namespace Application.Customers.CustomerCommand
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
         private readonly IMediator _mediator;
-        private readonly IValidator<CreateCustomerCommand> _validator;
 
-        public CreateCustomerCommandHandler(IMiniCoreBankingDbContext context, IMapper mapper, IMediator mediator, IValidator<CreateCustomerCommand> validator)
+        public CreateCustomerCommandHandler(IMiniCoreBankingDbContext context, IMapper mapper, IMediator mediator)
         {
             _context = context;
             _mapper = mapper;
             _mediator = mediator;
-            _validator = validator;
         }
         public async Task<MultipleDataResponseModel> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
 
-            _validator.ValidateAndThrow(request);
             CustomerHelper helper = new CustomerHelper(); 
 
             //Create Customer

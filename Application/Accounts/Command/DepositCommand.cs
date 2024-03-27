@@ -11,15 +11,12 @@ namespace Application.Accounts.AccountCommand
     public sealed class DepositCommandHandler : IRequestHandler<DepositCommand, ResponseModel>
     {
         private readonly IMiniCoreBankingDbContext _context;
-        private readonly IValidator<DepositCommand> _validator;
-        public DepositCommandHandler(IMiniCoreBankingDbContext context, IValidator<DepositCommand> validator)
+        public DepositCommandHandler(IMiniCoreBankingDbContext context)
         {
             _context = context;
-            _validator = validator;
         }
         public async Task<ResponseModel> Handle(DepositCommand command, CancellationToken cancellationToken)
         {
-            _validator.ValidateAndThrow(command);
             //Deposit Money
             Account existingAccount = await _context.Accounts.FirstOrDefaultAsync(x => x.Id == command.AccountId);
             if (existingAccount == null)

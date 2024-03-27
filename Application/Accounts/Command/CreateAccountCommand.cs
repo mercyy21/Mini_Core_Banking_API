@@ -18,16 +18,13 @@ namespace Application.Accounts.AccountCommand
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
-        private readonly IValidator<CreateAccountCommand> _validator;
-        public CreateAccountCommandHandler(IMiniCoreBankingDbContext context, IMapper mapper, IValidator<CreateAccountCommand> validator)
+        public CreateAccountCommandHandler(IMiniCoreBankingDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-            _validator = validator;
         }
         public async Task<ResponseModel> Handle(CreateAccountCommand command, CancellationToken cancellationToken)
         {
-            _validator.ValidateAndThrow(command);
             //Create Account
             AccountHelper accountHelper = new AccountHelper(); //Response helper
             bool existingAccount = await _context.Accounts.AnyAsync(x => x.CustomerId == command.AccountDTO.CustomerId);

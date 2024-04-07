@@ -12,3 +12,4 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Domain\obj\Debug\n
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Domain\bin\Debug\net8.0\Domain.runtimeconfig.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Domain\obj\Debug\net8.0\Domain.genruntimeconfig.cache
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Domain\obj\Debug\net8.0\Domain.sourcelink.json

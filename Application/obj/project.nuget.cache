@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "JnNS7f2HHrXk46iuY/+/vprBjpTYUjNiC5Hv63ycc36IilTOgqj63C/AKe83sBL4Jx1GU+B87MhXgmmZHB726w==",
+  "dgSpecHash": "PDeTtTu2aHX1yeP28mfFJOayQUAD2pos3cF1T1iU4Joo0XPzZwkb9gkLlbbHbz1r56U8kfSX+6YvW6vJ6ok8tQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
     "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",

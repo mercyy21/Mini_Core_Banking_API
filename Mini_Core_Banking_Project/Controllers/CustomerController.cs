@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Application.Customers.CustomerCommand;
 using Application.Customers.CustomerQuery;
 using Domain.DTO;
+using Application.Customers.Command;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mini_Core_Banking_Project.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Bank/Customer")]
     public class CustomerController : ControllerBase
@@ -15,6 +18,39 @@ namespace Mini_Core_Banking_Project.Controllers
         public CustomerController(IMediator mediator)
         {
             this._mediator = mediator;
+        }
+        /// <summary>
+        /// Login Here.
+        /// </summary>
+        ///  /// <remarks>
+        /// Sample Request:
+        /// 
+        ///     POST /Login
+        ///     {
+        ///         "email": "alexdaniel33@gmail.com",
+        ///         "password": "gejsi12",
+        ///     }
+        /// </remarks>
+        /// <param name="loginDTO"></param>
+        /// <returns></returns>
+        [HttpPost("/Login")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
+        {
+            try
+            {
+                AuthenticatedResponse login = await _mediator.Send(new LoginCustomerCommand(loginDTO.Email,loginDTO.Password));
+                if(!login.Success)
+                {
+                    return Unauthorized();
+                }
+                return Ok(login);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new AuthenticatedResponse { Message= ex.Message.ToString(), Success=false});
+            }
         }
 
         /// <summary>
@@ -32,6 +68,7 @@ namespace Mini_Core_Banking_Project.Controllers
         ///         "email": "alexdaniel33@gmail.com",
         ///         "address": "22, west avenue",
         ///         "phoneNumber": "0812345675",
+        ///         "password": "gejsi12",
         ///         "accountType": 1
         ///     }
         ///     </remarks>

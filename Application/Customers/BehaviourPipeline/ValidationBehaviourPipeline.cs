@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using MediatR;
 
-namespace Mini_Core_Banking_Project
+namespace Application.Customers.BehaviourPipeline
 {
-    public sealed class ValidationBehaviourPipeline<TRequest,  TResponse> 
+    public sealed class ValidationBehaviourPipeline<TRequest, TResponse>
         : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {
@@ -14,8 +14,8 @@ namespace Mini_Core_Banking_Project
             _validators = validators;
         }
         public async Task<TResponse> Handle(
-            TRequest request, 
-            RequestHandlerDelegate<TResponse> next, 
+            TRequest request,
+            RequestHandlerDelegate<TResponse> next,
             CancellationToken cancellationToken)
         {
             if (_validators.Any())

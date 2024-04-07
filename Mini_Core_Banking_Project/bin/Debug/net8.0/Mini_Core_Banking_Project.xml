@@ -95,6 +95,23 @@
             <param name="customerId"></param>
             <returns></returns>
         </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.Login(System.String,System.String)">
+            <summary>
+            Login here
+            </summary>
+            <remarks>
+            Sample Request:
+            
+                POST /Login
+                {
+                    "email": "alexdaniel33@gmail.com",
+                    "password": "gejsi12",
+                }
+            </remarks>
+            <param name="email"></param>
+            <param name="password"></param>
+            <returns>Return a token when successful</returns>
+        </member>
         <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.CreateCustomer(Domain.DTO.CreateCustomerDTO)">
             <summary>
             Create a Customer here
@@ -111,6 +128,7 @@
                     "email": "alexdaniel33@gmail.com",
                     "address": "22, west avenue",
                     "phoneNumber": "0812345675",
+                    "password": "gejsi12",
                     "accountType": 1
                 }
                 </remarks>

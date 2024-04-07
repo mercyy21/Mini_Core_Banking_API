@@ -15,3 +15,4 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\obj
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.CopyComplete
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\bin\Debug\net8.0\Infrastructure.runtimeconfig.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json

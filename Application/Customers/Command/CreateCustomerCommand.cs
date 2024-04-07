@@ -7,7 +7,7 @@ using AutoMapper;
 using Application.Accounts.AccountCommand;
 using Application.Customers.Helper;
 using Domain.Domain.Enums;
-using FluentValidation;
+using Application.Customers.PasswordHasher;
 
 namespace Application.Customers.CustomerCommand
 {
@@ -36,6 +36,11 @@ namespace Application.Customers.CustomerCommand
             {
                 return new MultipleDataResponseModel { Message = "Customer already exists", Success = false };
             }
+            //Hashing Password
+            Hasher hasher = new Hasher();
+            var (hashedPassword, salt)=hasher.HashPassword(request.CustomerDTO.Password);
+            //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.CustomerDTO.Password, salt);
+            // 
             Customer entity = new Customer
             {
                 FirstName = request.CustomerDTO.FirstName,
@@ -43,11 +48,13 @@ namespace Application.Customers.CustomerCommand
                 Email = request.CustomerDTO.Email,
                 Address = request.CustomerDTO.Address,
                 PhoneNumber = request.CustomerDTO.PhoneNumber,
+                Password = hashedPassword,
+                Salt = salt,
                 CreatedAt = DateTime.Now,
                 Status = Status.Active.ToString()
             };
 
-            //Save to list 
+            //Save to Database
             await _context.Customers.AddAsync(entity, CancellationToken.None);
             await _context.SaveChangesAsync(CancellationToken.None);
 
@@ -59,7 +66,7 @@ namespace Application.Customers.CustomerCommand
                 CustomerId = entity.Id,
                 AccountType = request.CustomerDTO.AccountType
             };
-            ResponseModel response = await _mediator.Send(new CreateAccountCommand(newAccount), CancellationToken.None);
+            ResponseModel response = await _mediator.Send(new CreateAccountCommand(newAccount), cancellationToken);
 
             return new MultipleDataResponseModel { Data = new List<object> { customerDTO, response.Data }, 
                 Message = "Customer created successfully", Success = true };

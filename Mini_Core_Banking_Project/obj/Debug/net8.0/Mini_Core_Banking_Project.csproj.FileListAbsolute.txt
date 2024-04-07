@@ -151,3 +151,8 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\Mini_Core_Banking_Project.sourcelink.json
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\MockQueryable.Core.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\MockQueryable.EntityFrameworkCore.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\MockQueryable.Moq.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

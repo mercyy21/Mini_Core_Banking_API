@@ -1,7 +1,6 @@
-﻿using Domain.Domain.Enums;
+﻿using Domain.Domain.Entity;
+using Domain.Domain.Enums;
 using Domain.DTO;
-using Domain.Entity;
-using FluentValidation;
 using Infrastructure.DBContext;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +23,10 @@ namespace Application.Accounts.AccountCommand
             if (existingAccount == null)
             {
                 return new ResponseModel { Message = "Account does not exist", Success = false };
+            }
+            if(existingAccount.Status==Status.Inactive.ToString())
+            {
+                return new ResponseModel { Message = "Account is already inactive", Success = false };
             }
 
             existingAccount.ClosedAt = DateTime.Now;

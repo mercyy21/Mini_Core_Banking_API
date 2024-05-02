@@ -8,7 +8,6 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\De
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\Debug\net8.0\Application.pdb
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\Debug\net8.0\Domain.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\Debug\net8.0\Domain.pdb
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\Application.csproj.CopyComplete
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\Application.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\refint\Application.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\Application.pdb
@@ -18,3 +17,4 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\De
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\bin\Debug\net8.0\Application.runtimeconfig.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\Application.genruntimeconfig.cache
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\Application.sourcelink.json
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Application\obj\Debug\net8.0\Applicat.44B5EDA2.Up2Date

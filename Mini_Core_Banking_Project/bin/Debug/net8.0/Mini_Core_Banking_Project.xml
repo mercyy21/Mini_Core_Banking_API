@@ -25,7 +25,14 @@
             <param name="account"></param>
             <returns> This endpoint return the Account you just created</returns>
         </member>
-        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Deposit(System.Guid,System.Double)">
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Signature(Domain.DTO.SignatureDTO)">
+            <summary>
+            Create Signature for Deposit and Withdraw
+            </summary>
+            <param name="signatureDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Deposit(Domain.DTO.TransactDTO)">
             <summary>
             Deposit Money into Customers Account
             </summary>
@@ -43,11 +50,10 @@
                 }
             
             </remarks>
-            <param name="accountId"></param>
-            <param name="amount"></param>
+            <param name="transactDTO"></param>
             <returns></returns>
         </member>
-        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Withdraw(System.Guid,System.Double)">
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Withdraw(Domain.DTO.TransactDTO)">
             <summary>
             Withdraw Money from a Customers Account
             </summary>
@@ -63,9 +69,27 @@
                     "amount": 1000
                 }
             </remarks>
-            <param name="accountId"></param>
-            <param name="amount"></param>
+            <param name="transactDTO"></param>
             <returns>This endpoints returns Amount exceeds balance or Customer does not exist when it's a bad request</returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.Transfer(Domain.DTO.TransferDTO)">
+            <summary>
+            Transfer Money to Customers Account
+            </summary>
+            <remarks>NOTE: 
+                           Account Number cannot be null.<br/>
+                           Amount cannot be null.<br/>
+                           Amount has to be greater than zero.<br/>
+            Sample request:
+            
+                POST /Transfer
+                {
+                    "accountNumber": "9459532478",
+                    "amount": 1000
+                }
+            </remarks>
+            <param name="transfer"></param>
+            <returns></returns>
         </member>
         <member name="M:Mini_Core_Banking_Project.Controllers.AccountController.ViewCustomersAccount(System.Guid)">
             <summary>
@@ -95,11 +119,11 @@
             <param name="customerId"></param>
             <returns></returns>
         </member>
-        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.Login(System.String,System.String)">
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.Login(Domain.DTO.LoginDTO)">
             <summary>
-            Login here
+            Login Here.
             </summary>
-            <remarks>
+             /// <remarks>
             Sample Request:
             
                 POST /Login
@@ -108,9 +132,14 @@
                     "password": "gejsi12",
                 }
             </remarks>
-            <param name="email"></param>
-            <param name="password"></param>
-            <returns>Return a token when successful</returns>
+            <param name="loginDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.Logout">
+            <summary>
+            Logout here
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.CreateCustomer(Domain.DTO.CreateCustomerDTO)">
             <summary>
@@ -170,6 +199,13 @@
             <param name="customerId"></param>
             <returns>Returns the specific customer you're looking for</returns>
         </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.ViewTransactionHistoryById(System.Guid)">
+            <summary>
+            View Customers Transaction History here
+            </summary>
+            <param name="customerId"></param>
+            <returns>Returns the specified customers transaction history</returns>
+        </member>
         <member name="M:Mini_Core_Banking_Project.Controllers.CustomerController.DeleteCustomer(System.Guid)">
             <summary>
             Delete Customers here
@@ -178,6 +214,13 @@
             <returns></returns>
             <repsonse code= '200'> Returns a success response</repsonse>
             <response code= '400'>If the Customer does not exist</response>
+        </member>
+        <member name="M:Mini_Core_Banking_Project.Controllers.RefreshTokenController.RefreshAccessToken(System.String)">
+            <summary>
+            Refresh your Access Token here. 
+            </summary>
+            <param name="refreshToken"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

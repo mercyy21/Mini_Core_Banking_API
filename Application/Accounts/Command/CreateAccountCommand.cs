@@ -1,9 +1,8 @@
 ﻿using Application.Accounts.Helper;
 using AutoMapper;
+using Domain.Domain.Entity;
 using Domain.Domain.Enums;
 using Domain.DTO;
-using Domain.Entity;
-using FluentValidation;
 using Infrastructure.DBContext;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

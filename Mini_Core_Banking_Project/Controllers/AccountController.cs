@@ -3,10 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Domain.DTO;
 using Application.Accounts.AccountCommand;
 using Application.Accounts.AccountQuery;
+using Microsoft.AspNetCore.Authorization;
+using Application.Accounts.Command;
+using Application.UtilityService;
 
 
 namespace Mini_Core_Banking_Project.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Bank/Account")]
     public class AccountController : Controller
@@ -16,7 +20,7 @@ namespace Mini_Core_Banking_Project.Controllers
 
         public AccountController( IMediator mediator)
         {
-            this._mediator = mediator;
+            _mediator = mediator;
         }
 
 
@@ -60,6 +64,26 @@ namespace Mini_Core_Banking_Project.Controllers
             }
 
         }
+        /// <summary>
+        /// Create Signature for Deposit and Withdraw
+        /// </summary>
+        /// <param name="signatureDTO"></param>
+        /// <returns></returns>
+        [HttpPost("/Signature")]
+        public async Task<IActionResult> Signature([FromBody]SignatureDTO signatureDTO)
+        {
+            try
+            {
+               ResponseModel response= await _mediator.Send(new SignatureCommand(signatureDTO));
+                return Ok(response);
+
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ResponseModel { Message= ex.Message.ToString(), Success = false});
+            }
+        }
 
         /// <summary>
         /// Deposit Money into Customers Account
@@ -78,24 +102,19 @@ namespace Mini_Core_Banking_Project.Controllers
         ///     }
         /// 
         /// </remarks>
-        /// <param name="accountId"></param>
-        /// <param name="amount"></param>
+        /// <param name="transactDTO"></param>
         /// <returns></returns>
-        [HttpPost("/deposit")]
-        public async Task<IActionResult> Deposit(Guid accountId, double amount)
+        [HttpPost("/Deposit")]
+        public async Task<IActionResult> Deposit([FromBody] TransactDTO transactDTO)
         {
             try
             {
-                ResponseModel message = await _mediator.Send(new DepositCommand(accountId, amount));
-                if (message.Message.Contains("greater"))
+                ResponseModel response = await _mediator.Send(new DepositCommand(transactDTO));
+                if (!response.Success)
                 {
-                    return BadRequest(message);
+                    return BadRequest(response);
                 }
-                if (message.Message.Contains("exist"))
-                {
-                    return BadRequest(message);
-                }
-                return Ok(message);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -120,19 +139,54 @@ namespace Mini_Core_Banking_Project.Controllers
         ///         "amount": 1000
         ///     }
         /// </remarks>
-        /// <param name="accountId"></param>
-        /// <param name="amount"></param>
+        /// <param name="transactDTO"></param>
         /// <returns>This endpoints returns Amount exceeds balance or Customer does not exist when it's a bad request</returns>
-        [HttpPost("/withdraw")]
-        public async Task<IActionResult> Withdraw(Guid accountId, double amount)
+        [HttpPost("/Withdraw")]
+        public async Task<IActionResult> Withdraw(TransactDTO transactDTO)
         {
-            ResponseModel message = await _mediator.Send(new WithdrawCommand(accountId, amount));
-            if (message.Message.Contains("exceeds") || message.Message.Contains("exist"))
+            ResponseModel response = await _mediator.Send(new WithdrawCommand(transactDTO));
+            if (!response.Success)
             {
-                return BadRequest(message);
+                return BadRequest(response);
             }
-            return Ok(message);
+            return Ok(response);
         }
+        /// <summary>
+        /// Transfer Money to Customers Account
+        /// </summary>
+        /// <remarks>NOTE: 
+        ///                Account Number cannot be null.<br/>
+        ///                Amount cannot be null.<br/>
+        ///                Amount has to be greater than zero.<br/>
+        /// Sample request:
+        /// 
+        ///     POST /Transfer
+        ///     {
+        ///         "accountNumber": "9459532478",
+        ///         "amount": 1000
+        ///     }
+        /// </remarks>
+        /// <param name="transfer"></param>
+        /// <returns></returns>
+        [HttpPost("/Transfer")]
+        public async Task<IActionResult> Transfer(TransferDTO transfer)
+        {
+            try
+            {
+                ResponseModel message = await _mediator.Send(new TransferCommand(transfer));
+                if (!message.Success)
+                {
+                    return BadRequest(message);
+                }
+                return Ok(message);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ResponseModel { Message = ex.Message.ToString(), Success = false });
+            }
+        }
+
         /// <summary>
         /// Get a Customers Account
         /// </summary>

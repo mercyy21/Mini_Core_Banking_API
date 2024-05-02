@@ -25,7 +25,6 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Mini_Core_Banking_Project.props
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\scopedcss\bundle\Mini_Core_Banking_Project.styles.css
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\Mini_Core_Banking_Project.csproj.CopyComplete
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\Mini_Core_Banking_Project.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\refint\Mini_Core_Banking_Project.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\Mini_Core_Banking_Project.pdb
@@ -156,3 +155,4 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\MockQueryable.EntityFrameworkCore.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\MockQueryable.Moq.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project\obj\Debug\net8.0\Mini_Cor.6FCEB1DF.Up2Date

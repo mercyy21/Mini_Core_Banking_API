@@ -1,4 +1,5 @@
-﻿using Domain.Entity;
+﻿
+using Domain.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.DBContext
@@ -10,6 +11,8 @@ namespace Infrastructure.DBContext
         }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             return base.SaveChangesAsync(cancellationToken);

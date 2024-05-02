@@ -7,8 +7,8 @@ namespace Application.Accounts.Validator
     {
         public DepositValidator() 
         {
-            RuleFor(c => c.AccountId).NotEmpty().NotNull();
-            RuleFor(c => c.Amount).NotEmpty().NotNull().GreaterThan(0).WithMessage("Must be greater than zero");
+            RuleFor(c => c.TransactDTO.Signature).NotEmpty().NotNull();
+            RuleFor(c => c.TransactDTO.Amount).NotEmpty().NotNull().GreaterThan(0).WithMessage("Must be greater than zero");
         }
     }
 }

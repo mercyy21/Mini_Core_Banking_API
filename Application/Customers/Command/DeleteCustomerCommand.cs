@@ -1,7 +1,6 @@
 ﻿using Application.Accounts.AccountCommand;
+using Domain.Domain.Entity;
 using Domain.DTO;
-using Domain.Entity;
-using FluentValidation;
 using Infrastructure.DBContext;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

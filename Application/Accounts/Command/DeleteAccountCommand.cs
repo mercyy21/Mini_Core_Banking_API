@@ -1,5 +1,5 @@
-﻿using Domain.DTO;
-using Domain.Entity;
+﻿using Domain.Domain.Entity;
+using Domain.DTO;
 using Infrastructure.DBContext;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

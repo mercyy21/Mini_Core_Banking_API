@@ -107,7 +107,6 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.AssemblyInfoInputs.cache
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.AssemblyInfo.cs
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.csproj.CoreCompileInputs.cache
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.csproj.CopyComplete
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\refint\Mini_Core_Banking_Project.Test.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.pdb
@@ -234,3 +233,7 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\MockQueryable.Moq.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.sourcelink.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Cor.79A4C0B2.Up2Date
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\AutoFixture.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\AutoFixture.Xunit2.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Fare.dll

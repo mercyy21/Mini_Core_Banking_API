@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mini_Core_Banking_Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c14eb92839d7030cfed1abc7eed84bd4ad7ff9d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9a1675070d04e2042fd63490b564b51f499a290")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mini_Core_Banking_Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mini_Core_Banking_Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

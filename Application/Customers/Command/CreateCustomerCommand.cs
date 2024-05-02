@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Domain.DTO;
-using Domain.Entity;
 using Infrastructure.DBContext;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
@@ -8,6 +7,7 @@ using Application.Accounts.AccountCommand;
 using Application.Customers.Helper;
 using Domain.Domain.Enums;
 using Application.Customers.PasswordHasher;
+using Domain.Domain.Entity;
 
 namespace Application.Customers.CustomerCommand
 {
@@ -39,8 +39,7 @@ namespace Application.Customers.CustomerCommand
             //Hashing Password
             Hasher hasher = new Hasher();
             var (hashedPassword, salt)=hasher.HashPassword(request.CustomerDTO.Password);
-            //string hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.CustomerDTO.Password, salt);
-            // 
+
             Customer entity = new Customer
             {
                 FirstName = request.CustomerDTO.FirstName,

@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entity.Account", b =>
+            modelBuilder.Entity("Domain.Domain.Entity.Account", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("Domain.Entity.Customer", b =>
+            modelBuilder.Entity("Domain.Domain.Entity.Customer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,6 +79,12 @@ namespace Infrastructure.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsLoggedIn")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastLoggedIn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -105,6 +111,77 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Domain.Domain.Entity.RefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RefreshTokens");
+                });
+
+            modelBuilder.Entity("Domain.Domain.Entity.Transaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Narration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiversAccountNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SendersAccountNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TransactionType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("Domain.Domain.Entity.Transaction", b =>
+                {
+                    b.HasOne("Domain.Domain.Entity.Customer", null)
+                        .WithMany("TransactionHistory")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Domain.Entity.Customer", b =>
+                {
+                    b.Navigation("TransactionHistory");
                 });
 #pragma warning restore 612, 618
         }

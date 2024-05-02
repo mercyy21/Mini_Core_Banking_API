@@ -9,6 +9,8 @@
       "Mini_Core_Banking_Project.Test/1.0.0": {
         "dependencies": {
           "Application": "1.0.0",
+          "AutoFixture": "4.18.1",
+          "AutoFixture.Xunit2": "4.18.1",
           "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.2",
           "Microsoft.NET.Test.Sdk": "17.6.0",
@@ -19,6 +21,30 @@
         },
         "runtime": {
           "Mini_Core_Banking_Project.Test.dll": {}
+        }
+      },
+      "AutoFixture/4.18.1": {
+        "dependencies": {
+          "Fare": "2.1.1",
+          "System.ComponentModel.Annotations": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoFixture.dll": {
+            "assemblyVersion": "4.18.0.0",
+            "fileVersion": "4.18.1.694"
+          }
+        }
+      },
+      "AutoFixture.Xunit2/4.18.1": {
+        "dependencies": {
+          "AutoFixture": "4.18.1",
+          "xunit.extensibility.core": "2.4.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoFixture.Xunit2.dll": {
+            "assemblyVersion": "4.18.0.0",
+            "fileVersion": "4.18.1.694"
+          }
         }
       },
       "AutoMapper/13.0.1": {
@@ -86,6 +112,17 @@
         }
       },
       "coverlet.collector/6.0.0": {},
+      "Fare/2.1.1": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        },
+        "runtime": {
+          "lib/netstandard1.1/Fare.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.1.0"
+          }
+        }
+      },
       "FluentValidation/11.9.0": {
         "runtime": {
           "lib/net8.0/FluentValidation.dll": {
@@ -1214,6 +1251,26 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
+      "System.ComponentModel/4.3.0": {
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.ComponentModel.Annotations/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.ComponentModel": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0"
+        }
+      },
       "System.Composition/6.0.0": {
         "dependencies": {
           "System.Composition.AttributedModel": "6.0.0",
@@ -2053,6 +2110,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AutoFixture/4.18.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BmWZDY4fkrYOyd5/CTBOeXbzsNwV8kI4kDi/Ty1Y5F+WDHBVKxzfWlBE4RSicvZ+EOi2XDaN5uwdrHsItLW6Kw==",
+      "path": "autofixture/4.18.1",
+      "hashPath": "autofixture.4.18.1.nupkg.sha512"
+    },
+    "AutoFixture.Xunit2/4.18.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I5Cwv1bvWb0lf2x2zO42bBQ2WaGudBh7tVBCzKIf8KmRJG+hmYY7ku3znnFZDVxbQaihNaqNkztLTwK4PwaoWg==",
+      "path": "autofixture.xunit2/4.18.1",
+      "hashPath": "autofixture.xunit2.4.18.1.nupkg.sha512"
+    },
     "AutoMapper/13.0.1": {
       "type": "package",
       "serviceable": true,
@@ -2094,6 +2165,13 @@
       "sha512": "sha512-tW3lsNS+dAEII6YGUX/VMoJjBS1QvsxqJeqLaJXub08y1FSjasFPtQ4UBUsudE9PNrzLjooClMsPtY2cZLdXpQ==",
       "path": "coverlet.collector/6.0.0",
       "hashPath": "coverlet.collector.6.0.0.nupkg.sha512"
+    },
+    "Fare/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HaI8puqA66YU7/9cK4Sgbs1taUTP1Ssa4QT2PIzqJ7GvAbN1QgkjbRsjH+FSbMh1MJdvS0CIwQNLtFT+KF6KpA==",
+      "path": "fare/2.1.1",
+      "hashPath": "fare.2.1.1.nupkg.sha512"
     },
     "FluentValidation/11.9.0": {
       "type": "package",
@@ -2689,6 +2767,20 @@
       "sha512": "sha512-l4zZJ1WU2hqpQQHXz1rvC3etVZN+2DLmQMO79FhOTZHMn8tDRr+WU287sbomD0BETlmKDn0ygUgVy9k5xkkJdA==",
       "path": "system.collections.immutable/6.0.0",
       "hashPath": "system.collections.immutable.6.0.0.nupkg.sha512"
+    },
+    "System.ComponentModel/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VyGn1jGRZVfxnh8EdvDCi71v3bMXrsu8aYJOwoV7SNDLVhiEqwP86pPMyRGsDsxhXAm2b3o9OIqeETfN5qfezw==",
+      "path": "system.componentmodel/4.3.0",
+      "hashPath": "system.componentmodel.4.3.0.nupkg.sha512"
+    },
+    "System.ComponentModel.Annotations/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SY2RLItHt43rd8J9D8M8e8NM4m+9WLN2uUd9G0n1I4hj/7w+v3pzK6ZBjexlG1/2xvLKQsqir3UGVSyBTXMLWA==",
+      "path": "system.componentmodel.annotations/4.3.0",
+      "hashPath": "system.componentmodel.annotations.4.3.0.nupkg.sha512"
     },
     "System.Composition/6.0.0": {
       "type": "package",

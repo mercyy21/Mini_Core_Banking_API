@@ -1,6 +1,5 @@
-﻿using Azure.Core;
+﻿using Domain.Domain.Entity;
 using Domain.DTO;
-using Domain.Entity;
 
 namespace Application.Customers.Helper
 {

@@ -1,12 +1,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Mini_Core_Banking_Project.Controllers;
-using Domain.Entity;
 using Domain.Enums;
 using Domain.DTO;
 using Moq;
 using Application.Customers.CustomerCommand;
 using Application.Customers.CustomerQuery;
+using Domain.Domain.Entity;
 
 namespace Mini_Core_Banking_Project.Test
 {

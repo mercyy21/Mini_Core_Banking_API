@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Application.Customers.BehaviourPipeline;
+using Application.Customers.Jwt;
+using Application.Customers.PasswordHasher;
+using Domain.Interfaces;
+using Application.UtilityService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +36,10 @@ builder.Services.AddAuthentication(option =>
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IMiniCoreBankingDbContext, MiniCoreBankingDbContext>();
+builder.Services.AddScoped<IJwtToken, JWTToken>();
+builder.Services.AddSingleton<IHasher, Hasher>();
+builder.Services.AddScoped<IDecrypt, DecryptService>();
+builder.Services.AddScoped<IEncrypt, EncryptionService>();
 builder.Services.AddDbContext<MiniCoreBankingDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerValidator>();
 foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -42,6 +50,7 @@ foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         cfg.AddOpenBehavior(typeof(ValidationBehaviourPipeline<,>));
     });
 }
+builder.Services.AddHttpContextAccessor();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 

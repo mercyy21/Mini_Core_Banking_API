@@ -5,6 +5,7 @@ using Application.Customers.CustomerQuery;
 using Domain.DTO;
 using Application.Customers.Command;
 using Microsoft.AspNetCore.Authorization;
+using Application.Customers.Query;
 
 namespace Mini_Core_Banking_Project.Controllers
 {
@@ -17,7 +18,7 @@ namespace Mini_Core_Banking_Project.Controllers
 
         public CustomerController(IMediator mediator)
         {
-            this._mediator = mediator;
+            _mediator = mediator;
         }
         /// <summary>
         /// Login Here.
@@ -39,7 +40,7 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                AuthenticatedResponse login = await _mediator.Send(new LoginCustomerCommand(loginDTO.Email,loginDTO.Password));
+                LoginResponseDTO login = await _mediator.Send(new LoginCustomerCommand(loginDTO.Email,loginDTO.Password));
                 if(!login.Success)
                 {
                     return Unauthorized();
@@ -49,9 +50,27 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new AuthenticatedResponse { Message= ex.Message.ToString(), Success=false});
+                return BadRequest(new LoginResponseDTO { Message= ex.Message.ToString(), Success=false});
             }
         }
+        /// <summary>
+        /// Logout here
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("/Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            try
+            {
+                ResponseModel response = await _mediator.Send(new  LogoutCustomerCommand());
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ResponseModel { Message= ex.Message, Success= false});
+            }
+        } 
 
         /// <summary>
         /// Create a Customer here
@@ -95,26 +114,28 @@ namespace Mini_Core_Banking_Project.Controllers
                 return BadRequest(new ResponseModel { Message = ex.Message.ToString(), Success= false });
             }
 
-        }/// <summary>
-         /// Update a Customer here 
-         /// </summary>
-         /// <remarks>
-         /// NOTE: All fields have to be updated
-         /// 
-         /// Sample Request:
-         ///     
-         ///     PUT /Customer
-         ///     {
-         ///        "firstName": "Alex",
-         ///         "lastName": "Daniel",
-         ///         "email": "alexdaniel33@gmail.com",
-         ///         "address": "22, west avenue",
-         ///         "phoneNumber": "0812345675"  
-         ///     }
-         /// </remarks>
-         /// <param name="customerId"></param>
-         /// <param name="customer"></param>
-         /// <returns></returns>
+        }
+        
+        /// <summary>
+        /// Update a Customer here 
+        /// </summary>
+        /// <remarks>
+        /// NOTE: All fields have to be updated
+        /// 
+        /// Sample Request:
+        ///     
+        ///     PUT /Customer
+        ///     {
+        ///        "firstName": "Alex",
+        ///         "lastName": "Daniel",
+        ///         "email": "alexdaniel33@gmail.com",
+        ///         "address": "22, west avenue",
+        ///         "phoneNumber": "0812345675"  
+        ///     }
+        /// </remarks>
+        /// <param name="customerId"></param>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         [HttpPut]
         //Update Customer
         public async Task<IActionResult> UpdateCustomer(Guid customerId, CustomerDTO customer)
@@ -172,7 +193,7 @@ namespace Mini_Core_Banking_Project.Controllers
             {
                 if (customerId == Guid.Empty)
                 {
-                    return BadRequest("Field cannot be empty");
+                    return BadRequest( new ResponseModel { Message = "Field cannot be empty", Success = false });
                 }
                 ResponseModel viewCustomerById = await _mediator.Send(new ViewCustomerByIdQuery(customerId));
                 if (!viewCustomerById.Success)
@@ -189,6 +210,36 @@ namespace Mini_Core_Banking_Project.Controllers
             {
                 return BadRequest(new ResponseModel { Message = ex.Message, Success= false });
                 
+            }
+        }
+        /// <summary>
+        /// View Customers Transaction History here
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns>Returns the specified customers transaction history</returns>
+        [HttpGet("/transaction")]
+        public async Task<IActionResult> ViewTransactionHistoryById(Guid customerId)
+        {
+            try
+            {
+                if (customerId == Guid.Empty)
+                {
+                    return BadRequest(new ResponseModel { Message="Field cannot be empty", Success=false });
+                }
+                ResponseModel response = await _mediator.Send(new ViewCustomerTransaction_HistoryByIdQuery(customerId));
+                if (!response.Success)
+                {
+                    return BadRequest(response);
+                }
+                else
+                {
+                    return Ok(response);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ResponseModel { Message= ex.Message, Success=false});
             }
         }
 

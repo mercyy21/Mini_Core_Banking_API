@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Customers.PasswordHasher
 {
-    public class Hasher
+    public class Hasher: IHasher
     {
         private const int SaltSize = 16; // 16 bytes salt (adjust as needed)
 
@@ -69,6 +65,7 @@ namespace Application.Customers.PasswordHasher
             }
             return salt;
         }
+
     }
 
 }

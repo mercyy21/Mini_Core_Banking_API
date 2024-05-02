@@ -19,7 +19,8 @@ public static class FakeCustomer
                 CreatedAt = DateTime.Now,
                 Id =Guid.Parse("ee99627b-a78d-47df-8bc1-94bd3501a4fd"),
                 Status = Status.Active.ToString() ,
-                UpdatedAt= DateTime.Now
+                UpdatedAt= DateTime.Now,
+                Salt="e28ehbq9ihyqoyw9q=qwjwn0"
            
             },
             

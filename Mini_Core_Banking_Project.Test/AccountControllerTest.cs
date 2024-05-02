@@ -10,7 +10,7 @@ using Domain.Domain.Entity;
 
 namespace Mini_Core_Banking_Project.Test
 {
-   /* public class AccountControllerTest
+   public class AccountControllerTest
     {
         private readonly Mock<IMediator> _mockMediator;
         private readonly AccountController _accountController;
@@ -149,15 +149,20 @@ namespace Mini_Core_Banking_Project.Test
             //Arrange 
             Guid accountId = Guid.NewGuid();
             double amount = 1000;
+            TransactDTO transactDTO = new TransactDTO
+            {
+                Signature = "Ughfol193ejak=",
+                Amount = 200
+            };
             ResponseModel response = new ResponseModel
             {
                 Message = "Amount successfully deposited",
                 Success = true
             };
             //Act
-            DepositCommand request = new DepositCommand(accountId,amount);
+            DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
-            IActionResult result = await _accountController.Deposit(accountId, amount);
+            IActionResult result = await _accountController.Deposit(transactDTO);
             OkObjectResult? resultType = result as OkObjectResult;
             //Assert
             Assert.NotNull(result);
@@ -169,17 +174,20 @@ namespace Mini_Core_Banking_Project.Test
         public async Task WithdrawSuccessAsync()
         {
             //Arrange 
-            Guid accountId = Guid.NewGuid();
-            double amount = 50;
+            TransactDTO transactDTO = new TransactDTO
+            {
+                Signature = "Ughfol193ejak=",
+                Amount = 50
+            };
             ResponseModel response = new ResponseModel
             {
                 Message = "Amount successfully withdrawn",
                 Success = true
             };
             //Act
-            WithdrawCommand request = new WithdrawCommand(accountId,amount);
+            WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
-            IActionResult result = await _accountController.Withdraw(accountId, amount);
+            IActionResult result = await _accountController.Withdraw(transactDTO);
             OkObjectResult? resultType = result as OkObjectResult;
             //Assert
             Assert.NotNull (result);
@@ -326,17 +334,20 @@ namespace Mini_Core_Banking_Project.Test
         public async void Deposit_AccountDoesNotExist()
         {
             //Arrange 
-            Guid accountId = Guid.NewGuid();
-            double amount = 1000;
+            TransactDTO transactDTO = new TransactDTO
+            {
+                Signature = "Pghfsl193ejaw=",
+                Amount = 200
+            };
             ResponseModel response = new ResponseModel
             {
                 Message = "Account does not exist",
                 Success = false
             };
             //Act
-            DepositCommand request = new DepositCommand(accountId, amount);
+            DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
-            IActionResult result = await _accountController.Deposit(accountId, amount);
+            IActionResult result = await _accountController.Deposit(transactDTO);
             BadRequestObjectResult? resultType = result as BadRequestObjectResult;
             //Assert
             Assert.NotNull(result);
@@ -348,17 +359,20 @@ namespace Mini_Core_Banking_Project.Test
         public async void Deposit_AmountLessThanZero()
         {
             //Arrange 
-            Guid accountId = Guid.NewGuid();
-            double amount = -10;
+            TransactDTO transactDTO = new TransactDTO
+            {
+                Signature = "Ughfol193ejak=",
+                Amount = 0
+            };
             ResponseModel response = new ResponseModel
             {
                 Message = "Amount must be greater than zero",
                 Success = false
             };
             //Act
-            DepositCommand request = new DepositCommand(accountId, amount);
+            DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
-            IActionResult result = await _accountController.Deposit(accountId, amount);
+            IActionResult result = await _accountController.Deposit(transactDTO);
             BadRequestObjectResult? resultType = result as BadRequestObjectResult;
             //Assert
             Assert.NotNull(result);
@@ -370,17 +384,20 @@ namespace Mini_Core_Banking_Project.Test
         public async void Withdraw_AccountDoesNotExist()
         {
             //Arrange 
-            Guid accountId = Guid.NewGuid();
-            double amount = 50;
+            TransactDTO transactDTO = new TransactDTO
+            {
+                Signature = "Pghfsl193ejaw=",
+                Amount = 200
+            };
             ResponseModel response = new ResponseModel
             {
                 Message = "Account does not exist",
                 Success = false
             };
             //Act
-            WithdrawCommand request = new WithdrawCommand(accountId, amount);
+            WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
-            IActionResult result = await _accountController.Withdraw(accountId, amount);
+            IActionResult result = await _accountController.Withdraw(transactDTO);
             BadRequestObjectResult? resultType = result as BadRequestObjectResult;
             //Assert
             Assert.NotNull(result);
@@ -391,17 +408,20 @@ namespace Mini_Core_Banking_Project.Test
         public async void Withdraw_AmountExceedsBalance()
         {
             //Arrange 
-            Guid accountId = Guid.NewGuid();
-            double amount = 10000;
+            TransactDTO transactDTO = new TransactDTO
+            {
+                Signature = "Ughfol193ejak=",
+                Amount = 200000
+            };
             ResponseModel response = new ResponseModel
             {
                 Message = "Amount exceeds balance",
                 Success = false
             };
             //Act
-            WithdrawCommand request = new WithdrawCommand(accountId, amount);
+            WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
-            IActionResult result =await _accountController.Withdraw(accountId, amount);
+            IActionResult result =await _accountController.Withdraw(transactDTO);
             BadRequestObjectResult? resultType = result as BadRequestObjectResult;
             //Assert
             Assert.NotNull(result);
@@ -433,5 +453,5 @@ namespace Mini_Core_Banking_Project.Test
             Assert.Equal(response.ToString(), resultType.Value.ToString());
         }
 
-    }*/
+    }
 }

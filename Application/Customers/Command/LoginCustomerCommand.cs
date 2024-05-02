@@ -14,10 +14,12 @@ namespace Application.Customers.Command
     {
         private readonly IMiniCoreBankingDbContext _dbContext;
         private readonly IHasher _hasher;
-        public LoginCustomerCommandHandler(IMiniCoreBankingDbContext dbContext, IHasher hasher)
+        private readonly IJwtToken _jwtToken;
+        public LoginCustomerCommandHandler(IMiniCoreBankingDbContext dbContext, IHasher hasher, IJwtToken jwtToken)
         {
             _dbContext = dbContext;
             _hasher = hasher;
+            _jwtToken = jwtToken;
         }
         public async Task<LoginResponseDTO> Handle(LoginCustomerCommand command, CancellationToken cancellationToken)
         {
@@ -28,11 +30,10 @@ namespace Application.Customers.Command
             }
             bool correctPassword =_hasher.VerifyPassword(command.Password,existingCustomer.Password,existingCustomer.Salt);
 
-            if ((existingCustomer!=null)&& (correctPassword))
+            if ((correctPassword))
             {
-                JWTToken token = new();
-                string tokenString = token.GenerateJWTToken(existingCustomer);
-                string refreshToken = token.GenerateRefreshToken();
+                string tokenString = _jwtToken.GenerateJWTToken(existingCustomer);
+                string refreshToken = _jwtToken.GenerateRefreshToken();
                 RefreshToken storedRefreshToken = new RefreshToken
                 {
                     Id = Guid.NewGuid(),
@@ -46,9 +47,12 @@ namespace Application.Customers.Command
                 _dbContext.Customers.Update(existingCustomer);
                 await _dbContext.SaveChangesAsync(cancellationToken);
                 return new LoginResponseDTO { Message = "Login Successful", Success = true, AccessToken =tokenString,RefreshToken= refreshToken };
-            };
-            
-            return new LoginResponseDTO { Message = "Error, try again", Success= false };
+            }
+            else
+            {
+                return new LoginResponseDTO { Message = "Wrong password, try again", Success = false };
+
+            }
 
         }
     }

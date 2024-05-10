@@ -85,9 +85,10 @@
               "RelativeDocumentMoniker": "Infrastructure\\DBContext\\MiniCoreBankingDbContext.cs",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Infrastructure\\DBContext\\MiniCoreBankingDbContext.cs",
               "RelativeToolTip": "Infrastructure\\DBContext\\MiniCoreBankingDbContext.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAAACUAAAAxAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAABQwCUAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T22:54:44.067Z"
+              "WhenOpened": "2024-05-09T22:54:44.067Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -97,9 +98,10 @@
               "RelativeDocumentMoniker": "Infrastructure\\Migrations\\MiniCoreBankingDbContextModelSnapshot.cs",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Infrastructure\\Migrations\\MiniCoreBankingDbContextModelSnapshot.cs",
               "RelativeToolTip": "Infrastructure\\Migrations\\MiniCoreBankingDbContextModelSnapshot.cs",
-              "ViewState": "AQIAAIUAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAIIAAAAAAAAAAIBJwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T21:05:56.524Z"
+              "WhenOpened": "2024-05-09T21:05:56.524Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -111,7 +113,8 @@
               "RelativeToolTip": "Mini_Core_Banking_Project\\Controllers\\CustomerController.cs",
               "ViewState": "AQIAAIsAAAAAAAAAAAAkwJMAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T20:52:45.861Z"
+              "WhenOpened": "2024-05-09T20:52:45.861Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -123,7 +126,8 @@
               "RelativeToolTip": "Mini_Core_Banking_Project\\Controllers\\UtilityController.cs",
               "ViewState": "AQIAAB0AAAAAAAAAAAAswCYAAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T20:51:20.747Z"
+              "WhenOpened": "2024-05-09T20:51:20.747Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -135,7 +139,8 @@
               "RelativeToolTip": "Mini_Core_Banking_Project\\Controllers\\AccountController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T20:37:30.592Z"
+              "WhenOpened": "2024-05-09T20:37:30.592Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -147,7 +152,8 @@
               "RelativeToolTip": "Application\\Accounts\\Query\\ViewCustomersAccountQuery.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAB9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T20:33:43.302Z"
+              "WhenOpened": "2024-05-09T20:33:43.302Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -157,9 +163,10 @@
               "RelativeDocumentMoniker": "Mini_Core_Banking_Project.Test\\Accounts\\Command\\CreateAccountCommandTest.cs",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project.Test\\Accounts\\Command\\CreateAccountCommandTest.cs",
               "RelativeToolTip": "Mini_Core_Banking_Project.Test\\Accounts\\Command\\CreateAccountCommandTest.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAIBJwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T20:08:57.473Z"
+              "WhenOpened": "2024-05-09T20:08:57.473Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -171,7 +178,8 @@
               "RelativeToolTip": "Domain\\Domain\\Enums\\Status.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-08T14:05:20.857Z"
+              "WhenOpened": "2024-05-08T14:05:20.857Z",
+              "EditorCaption": ""
             }
           ]
         }

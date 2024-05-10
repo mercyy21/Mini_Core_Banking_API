@@ -1,15 +1,16 @@
 ﻿using Application.Accounts.Helper;
 using AutoMapper;
-using Domain.Domain.Entity;
-using Domain.DTO;
-using Infrastructure.DBContext;
+using Application.Domain.Entity;
+using Application.DTO;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using Application.ResultType;
 
 namespace Application.Accounts.AccountQuery
 {
-    public sealed record ViewCustomersAccountQuery(Guid CustomerId) : IRequest<ResponseModel>;
-    public sealed class ViewCustomersAccountQueryHandler : IRequestHandler<ViewCustomersAccountQuery, ResponseModel>
+    public sealed record ViewCustomersAccountQuery(Guid CustomerId) : IRequest<ResultType.Result>;
+    public sealed class ViewCustomersAccountQueryHandler : IRequestHandler<ViewCustomersAccountQuery, ResultType.Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -18,18 +19,18 @@ namespace Application.Accounts.AccountQuery
             _context = context;
             _mapper = mapper;
         }
-        public async Task<ResponseModel> Handle(ViewCustomersAccountQuery query, CancellationToken cancellationToken)
+        public async Task<ResultType.Result> Handle(ViewCustomersAccountQuery query, CancellationToken cancellationToken)
         {
             //View customers account
             AccountHelper accountHelper = new AccountHelper();
             Account account = await _context.Accounts.FirstOrDefaultAsync(x => x.CustomerId == query.CustomerId);
             if (account == null)
             {
-                return new ResponseModel { Message = "Account does not exist", Success = false };
+                return ResultType.Result.Failure<ViewCustomersAccountQuery>("Account does not exist");
             }
             AccountResponseDTO accountDTO = _mapper.Map<AccountResponseDTO>(accountHelper.AccountResponse(account));
 
-            return new ResponseModel { Data = accountDTO, Message = "Customers Account returned successfully", Success = true };
+            return ResultType.Result.Success<ViewCustomersAccountQuery>("Customers Account returned successfully", accountDTO);
         }
     }
 }

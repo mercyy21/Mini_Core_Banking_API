@@ -1,9 +1,9 @@
-﻿namespace Domain.Domain.Enums
+﻿namespace Application.Domain.Enums
 {
     public enum NarrationType
     {
-        Deposit = 1,
-        Withdraw = 2,
-        Transfer = 3
+        Deposit ,
+        Withdraw,
+        Transfer
     }
 }

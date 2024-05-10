@@ -1,7 +1,7 @@
-﻿using Domain.Domain.Entity;
-using Domain.Domain.Enums;
+﻿using Application.Domain.Entity;
+using Application.Domain.Enums;
 
-namespace Mini_Core_Banking_Project.Test.Generate;
+namespace API.Test.Generate;
 
 public static class FakeTransactionHistory
 {
@@ -16,9 +16,9 @@ public static class FakeTransactionHistory
                 SendersAccountNumber="6439012387",
                 CustomerId= Guid.Parse("ee99627b-a78d-47df-8bc1-94bd3501a4fd"),
                 Amount=2000,
-                Narration= NarrationType.Transfer.ToString(),
+                Narration= NarrationType.Transfer,
                 Timestamp= DateTime.Now,
-                TransactionType= TransactionType.Debit.ToString()
+                TransactionType= TransactionType.Debit
             }
         };
     }

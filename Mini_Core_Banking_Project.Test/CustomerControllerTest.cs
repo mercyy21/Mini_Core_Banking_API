@@ -1,14 +1,16 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Mini_Core_Banking_Project.Controllers;
-using Domain.Enums;
-using Domain.DTO;
+using API.Controllers;
+using Application.Enums;
+using Application.DTO;
 using Moq;
 using Application.Customers.CustomerCommand;
 using Application.Customers.CustomerQuery;
-using Domain.Domain.Entity;
+using Application.Domain.Entity;
+using Application.Domain.Enums;
+using Application.ResultType;
 
-namespace Mini_Core_Banking_Project.Test
+namespace API.Test
 {
     public class CustomerControllerTest
     {
@@ -61,21 +63,21 @@ namespace Mini_Core_Banking_Project.Test
                 CustomerId = customerResponse.Id,
                 AccountType = customerRequest.AccountType,
                 Id = Guid.NewGuid(),
-                Status = "Active"
+                Status = Status.Active
             };
-            MultipleDataResponseModel response = new MultipleDataResponseModel
+            var responses = new
             {
-                Data = new List<object> { customerResponse, accountResponseDTO },
-                Message = "Customer created successfully",
-                Success = true
+                CustomerResponse = customerResponse,
+                AccountResponseDTO = accountResponseDTO
             };
+            Result response = Result.Success("Customer created successfully",responses);
 
             //Act
             CreateCustomerCommand request = new CreateCustomerCommand(customerRequest);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
             IActionResult result = await _customerController.CreateCustomer(customerRequest);
             OkObjectResult? resultType = result as OkObjectResult;
-            MultipleDataResponseModel? actualResponse = resultType.Value as MultipleDataResponseModel;
+            Result? actualResponse = resultType.Value as Result;
             //Assert
             //Assert.NotNull(result);
             Assert.IsType<OkObjectResult>(result);
@@ -97,15 +99,10 @@ namespace Mini_Core_Banking_Project.Test
                 Address = customers[0].Address,
                 PhoneNumber = customers[0].FirstName
             };
-            ResponseModel response = new ResponseModel
-            {
-                Data = customer,
-                Message = "Customers created successfully",
-                Success = true
-            };
+            Result response = Application.ResultType.Result.Success<ViewCustomersQuery>("Customers returned successfully");
             //Act
             ViewCustomersQuery request = new ViewCustomersQuery();
-            _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(new ResponseModel { Data = customer, Message = "Customers created successfully", Success = true });
+            _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
             IActionResult result = await _customerController.ViewCustomers();
             OkObjectResult? resultType = result as OkObjectResult;
             //Assert
@@ -124,12 +121,7 @@ namespace Mini_Core_Banking_Project.Test
                 FirstName = "Tiwa",
                 PhoneNumber = "098765432"
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Customer Updated Successfully",
-                Success = true
-            };
-
+            Result response = Result.Success<UpdateCustomerCommand>("Customer Updated Successfully");
             //Act
             UpdateCustomerCommand request = new UpdateCustomerCommand(id, customerDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -156,15 +148,10 @@ namespace Mini_Core_Banking_Project.Test
                 Address = customers[0].Address,
                 PhoneNumber = customers[0].FirstName
             };
-            ResponseModel response = new ResponseModel
-            {
-                Data = customer,
-                Message = "Customer returned successfully",
-                Success = true
-            };
+            Result response = Result.Success<ViewCustomerByIdQuery>("Customer returned successfully", customer);
             //Act 
             ViewCustomerByIdQuery request = new ViewCustomerByIdQuery(customerId);
-            _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(new ResponseModel { Data = customer, Message = "Customer returned successfully", Success = true });
+            _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
             IActionResult result = await _customerController.ViewCustomerById(customerId);
             OkObjectResult? resultType = result as OkObjectResult;
             //Assert
@@ -178,11 +165,7 @@ namespace Mini_Core_Banking_Project.Test
         {
             //Arrange
             Guid customerId = Guid.NewGuid();
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Deleted Successfully",
-                Success = true
-            };
+            Result response = Result.Success<DeleteCustomerCommand>("Deleted Successfully");
 
             //Act
             DeleteCustomerCommand request = new DeleteCustomerCommand(customerId);
@@ -212,12 +195,7 @@ namespace Mini_Core_Banking_Project.Test
                 PhoneNumber = customers[0].FirstName,
                 AccountType = AccountType.Savings
             };
-            MultipleDataResponseModel response = new MultipleDataResponseModel
-            {
-                Message = "Customer already exists",
-                Success = false
-            };
-
+            Result response = Result.Failure<CreateCustomerCommand>("Customer already exists");
             //Act
             CreateCustomerCommand request = new CreateCustomerCommand(customerRequest);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -239,11 +217,7 @@ namespace Mini_Core_Banking_Project.Test
                 FirstName = "Tiwa",
                 PhoneNumber = "098765432"
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Customer Does Not Exist",
-                Success = false
-            };
+            Result response = Result.Failure<UpdateCustomerCommand>("Customer Does Not Exist");
 
             //Act
             UpdateCustomerCommand request = new UpdateCustomerCommand(id, customerDTO);
@@ -261,14 +235,10 @@ namespace Mini_Core_Banking_Project.Test
         {
             //Arrange
             List<CustomerResponseDTO> customer = new List<CustomerResponseDTO> { };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "No customer has been created",
-                Success = true
-            };
+            Result response = Result.Failure<ViewCustomersQuery>("No customer has been created");
             //Act
             ViewCustomersQuery request = new ViewCustomersQuery();
-            _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(new ResponseModel { Message = "No customer has been created", Success = true });
+            _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
             IActionResult result = await _customerController.ViewCustomers();
             BadRequestObjectResult? resultType = result as BadRequestObjectResult;
             //Assert
@@ -291,11 +261,7 @@ namespace Mini_Core_Banking_Project.Test
                 PhoneNumber = customers[0].FirstName
             };
 
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Customer Does Not Exist",
-                Success = false
-            };
+            Result response = Result.Failure<ViewCustomerByIdQuery>("Customer Does Not Exist");
             //Act
             ViewCustomerByIdQuery request = new ViewCustomerByIdQuery(customerId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -322,11 +288,7 @@ namespace Mini_Core_Banking_Project.Test
                 PhoneNumber = customers[0].FirstName
             };
 
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Customer Does Not Exist",
-                Success = false
-            };
+            Result response = Application.ResultType.Result.Failure<DeleteCustomerCommand>("Customer Does Not Exist");
             //Act
             DeleteCustomerCommand request = new DeleteCustomerCommand(customerId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);

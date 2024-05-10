@@ -1,15 +1,16 @@
 ﻿using Application.Accounts.AccountCommand;
 using Application.TransactionHistory;
-using Domain.Domain.Entity;
-using Domain.DTO;
-using Domain.Interfaces;
+using Application.Domain.Entity;
+using Application.DTO;
+using Application.Interfaces;
 using Infrastructure.DBContext;
 using MediatR;
-using Mini_Core_Banking_Project.Test.Generate;
-using Mini_Core_Banking_Project.Test.Services;
+using API.Test.Generate;
+using API.Test.Services;
 using Moq;
+using Application.ResultType;
 
-namespace Mini_Core_Banking_Project.Test.Accounts.Command;
+namespace API.Test.Accounts.Command;
 
 public class WithdrawCommandTest
 {
@@ -35,15 +36,10 @@ public class WithdrawCommandTest
         Transaction transaction = FakeTransactionHistory.GenerateFakeTransactionHistory().First(x => x.Id == Guid.Parse("e47fd612-f843-4470-a53b-eb63700a8b04"));
         TransactDTO transactDTO = new TransactDTO
         {
-            Signature = "Ughfol193ejak=",
+            TransactionDetails = "Ughfol193ejak=",
             Amount = 200
         };
-        ResponseModel response = new ResponseModel
-        {
-            Data = transaction,
-            Message = "Transaction recorded successfully",
-            Success = true
-        };
+        Result response = Result.Success<RecordTransactionCommand>("Transaction recorded successfully");
         _mediator.Setup(x => x.Send(It.IsAny<RecordTransactionCommand>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
         _decryptService.Setup(x => x.Decrypt(It.IsAny<string>())).Returns(decryptedSignature);
 
@@ -68,7 +64,7 @@ public class WithdrawCommandTest
         _contextMock.Setup(x => x.Accounts).Returns(accountMock);
         TransactDTO transactDTO = new TransactDTO
         {
-            Signature = "Ughfol193ejak=",
+            TransactionDetails = "Ughfol193ejak=",
             Amount = 200
         };
         _decryptService.Setup(x => x.Decrypt(It.IsAny<string>())).Returns(decryptedSignature);
@@ -95,7 +91,7 @@ public class WithdrawCommandTest
         Transaction transaction = FakeTransactionHistory.GenerateFakeTransactionHistory().First(x => x.Id == Guid.Parse("e47fd612-f843-4470-a53b-eb63700a8b04"));
         TransactDTO transactDTO = new TransactDTO
         {
-            Signature = "Ughfol193ejak=",
+            TransactionDetails = "Ughfol193ejak=",
             Amount = 200
         };
         _decryptService.Setup(x => x.Decrypt(It.IsAny<string>())).Returns(decryptedSignature);
@@ -120,7 +116,7 @@ public class WithdrawCommandTest
         Transaction transaction = FakeTransactionHistory.GenerateFakeTransactionHistory().First(x => x.Id == Guid.Parse("e47fd612-f843-4470-a53b-eb63700a8b04"));
         TransactDTO transactDTO = new TransactDTO
         {
-            Signature = "Ughfol193ejak=",
+            TransactionDetails = "Ughfol193ejak=",
             Amount = 200
         };
         _decryptService.Setup(x => x.Decrypt(It.IsAny<string>())).Returns(decryptedSignature);
@@ -147,7 +143,7 @@ public class WithdrawCommandTest
         Transaction transaction = FakeTransactionHistory.GenerateFakeTransactionHistory().First(x => x.Id == Guid.Parse("e47fd612-f843-4470-a53b-eb63700a8b04"));
         TransactDTO transactDTO = new TransactDTO
         {
-            Signature = "Ughfol193ejak=",
+            TransactionDetails = "Ughfol193ejak=",
             Amount = 200
         };
         _decryptService.Setup(x => x.Decrypt(It.IsAny<string>())).Returns(decryptedSignature);
@@ -174,7 +170,7 @@ public class WithdrawCommandTest
         Transaction transaction = FakeTransactionHistory.GenerateFakeTransactionHistory().First(x => x.Id == Guid.Parse("e47fd612-f843-4470-a53b-eb63700a8b04"));
         TransactDTO transactDTO = new TransactDTO
         {
-            Signature = "Ughfol193ejak=",
+            TransactionDetails = "Ughfol193ejak=",
             Amount = 100000000
         };
         _decryptService.Setup(x => x.Decrypt(It.IsAny<string>())).Returns(decryptedSignature);

@@ -1,8 +1,8 @@
-﻿namespace Domain.DTO
+﻿namespace Application.DTO
 {
     public class TransactDTO
     {
-        public string Signature { get; set; }
+        public string? TransactionDetails { get; set; }
         public double Amount { get; set; }
     }
 }

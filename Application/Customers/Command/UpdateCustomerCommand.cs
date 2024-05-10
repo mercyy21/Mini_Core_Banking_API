@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
-using Domain.Domain.Entity;
-using Domain.DTO;
-using Infrastructure.DBContext;
+using Application.Domain.Entity;
+using Application.ResultType;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using Application.DTO;
 
 namespace Application.Customers.CustomerCommand
 {
-    public sealed record UpdateCustomerCommand(Guid CustomerId, CustomerDTO Customer) : IRequest<ResponseModel>;
+    public sealed record UpdateCustomerCommand(Guid CustomerId, CustomerDTO Customer) : IRequest<ResultType.Result>;
 
-    public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, ResponseModel>
+    public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, ResultType.Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -19,13 +20,13 @@ namespace Application.Customers.CustomerCommand
             _mapper = mapper;
         }
 
-        public async Task<ResponseModel> Handle(UpdateCustomerCommand command, CancellationToken cancellationToken)
+        public async Task<ResultType.Result> Handle(UpdateCustomerCommand command, CancellationToken cancellationToken)
         {
             //Update Customer
             Customer existingCustomer = await _context.Customers.FirstOrDefaultAsync(x => x.Id == command.CustomerId);
             if (existingCustomer == null)
             {
-                return new ResponseModel { Message = "Customer does not exist", Success = false };
+                return ResultType.Result.Failure<UpdateCustomerCommand>("Customer does not exist");
             }
             existingCustomer.FirstName = command.Customer.FirstName;
             existingCustomer.LastName = command.Customer.LastName;
@@ -38,7 +39,7 @@ namespace Application.Customers.CustomerCommand
 
             //Response
             CustomerResponseDTO responseDTO = _mapper.Map<CustomerResponseDTO>(existingCustomer);
-            return new ResponseModel { Data= responseDTO,Message = "Customer Updated Successfully", Success = true };
+            return ResultType.Result.Success<UpdateCustomerCommand>("Customer Updated Successfully",responseDTO);
         }
 
     }

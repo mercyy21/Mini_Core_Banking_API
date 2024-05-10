@@ -1,8 +1,9 @@
-﻿namespace Domain.Domain.Enums
+﻿namespace Application.Domain.Enums
 {
     public enum Status
     {
-        Active,
-        Inactive
+        Active=1,
+        Inactive=2,
+        Removed=3
     }
 }

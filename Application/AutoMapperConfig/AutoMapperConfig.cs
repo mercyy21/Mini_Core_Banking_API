@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.DTO;
-using Domain.Domain.Entity;
+using Application.DTO;
+using Application.Domain.Entity;
 
 namespace Application.AutoMapperConfig
 {

@@ -1,7 +1,7 @@
-﻿using Domain.Domain.Entity;
-using Domain.Domain.Enums;
+﻿using Application.Domain.Entity;
+using Application.Domain.Enums;
 
-namespace Mini_Core_Banking_Project.Test.Generate;
+namespace API.Test.Generate;
 
 public static class FakeCustomer
 {
@@ -18,7 +18,7 @@ public static class FakeCustomer
                 Address = "21A, foster street",
                 CreatedAt = DateTime.Now,
                 Id =Guid.Parse("ee99627b-a78d-47df-8bc1-94bd3501a4fd"),
-                Status = Status.Active.ToString() ,
+                Status = Status.Active ,
                 UpdatedAt= DateTime.Now,
                 Salt="e28ehbq9ihyqoyw9q=qwjwn0"
            
@@ -44,7 +44,7 @@ public static class FakeCustomer
                 Address = "21A, foster street",
                 CreatedAt = DateTime.Now,
                 Id = Guid.Parse("fefc120c-d9f2-4072-ab9f-fe357a2f9cc3"),
-                Status = Status.Active.ToString(),
+                Status = Status.Active,
                 UpdatedAt = DateTime.Now
 
             }

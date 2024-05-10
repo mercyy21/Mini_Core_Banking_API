@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Transactions;
 
-namespace Domain.Domain.Entity
+namespace Application.Domain.Entity
 {
     public class Customer : Base
     {
@@ -23,7 +23,6 @@ namespace Domain.Domain.Entity
         public bool IsLoggedIn { get; set; }
         [Required]
         public DateTime LastLoggedIn { get; set; }
-        public DateTime? UpdatedAt { get; set; }
         
         public List<Transaction> TransactionHistory { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿using Domain.Domain.Entity;
+﻿using Application.Domain.Entity;
 
 namespace Application.Accounts.Helper
 {

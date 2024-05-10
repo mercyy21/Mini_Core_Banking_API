@@ -1,13 +1,15 @@
 ﻿using Application.Accounts.AccountCommand;
 using Application.Customers.CustomerCommand;
-using Domain.DTO;
+using Application.DTO;
 using Infrastructure.DBContext;
 using MediatR;
-using Mini_Core_Banking_Project.Test.Generate;
-using Mini_Core_Banking_Project.Test.Services;
+using API.Test.Generate;
+using API.Test.Services;
 using Moq;
+using Application.Interfaces;
+using Application.ResultType;
 
-namespace Mini_Core_Banking_Project.Test.Customers.Command;
+namespace API.Test.Customers.Command;
 
 public class DeleteCustomerCommandTest
 {
@@ -27,11 +29,7 @@ public class DeleteCustomerCommandTest
         var mock = MockDBContext.GetQueryableMockDbSet(FakeCustomer.GenerateCustomer());
         _contextMock.Setup(x => x.Customers).Returns(mock);
         Guid customerId = Guid.Parse("ee99627b-a78d-47df-8bc1-94bd3501a4fd");
-        ResponseModel response = new ResponseModel
-        {
-            Message = "Account Deleted Successfully",
-            Success = true
-        };
+        Result response = Result.Success<DeleteCustomerCommand>("Account Deleted Successfully");
         //Act
         var request = new DeleteCustomerCommand(customerId);
         _mediator.Setup(x => x.Send(It.IsAny<DeleteAccountCommand>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);

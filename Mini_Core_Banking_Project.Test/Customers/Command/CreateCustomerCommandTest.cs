@@ -1,27 +1,35 @@
 ﻿using Application.Accounts.AccountCommand;
 using Application.Customers.CustomerCommand;
 using AutoMapper;
-using Domain.DTO;
-using Domain.Enums;
-using Infrastructure.DBContext;
+using Application.DTO;
+using Application.Enums;
 using MediatR;
-using Mini_Core_Banking_Project.Test.Generate;
-using Mini_Core_Banking_Project.Test.Services;
+using API.Test.Generate;
+using API.Test.Services;
 using Moq;
+using Application.Interfaces;
+using Application.Domain.Enums;
+using Application.ResultType;
+using Castle.Core.Logging;
 
-namespace Mini_Core_Banking_Project.Test.Customers.Command
+namespace API.Test.Customers.Command
 {
     public class CreateCustomerCommandTest
     {
         private readonly Mock<IMediator> _mediator;
         private readonly Mock<IMapper> _mapper;
         private readonly Mock<IMiniCoreBankingDbContext> _contextMock;
+        private readonly Mock<IHasher> _mockHasher;
+        private readonly Mock<ILogger> _loggerMock;
+
 
         public CreateCustomerCommandTest()
         {
             _mediator = new Mock<IMediator>();
             _mapper = new Mock<IMapper>();
             _contextMock = new Mock<IMiniCoreBankingDbContext>();
+            _mockHasher = new Mock<IHasher>();
+            _loggerMock = new Mock<ILogger>();
         }
         [Fact]
         public async Task CreateCustomerSuccessAsync()
@@ -49,19 +57,14 @@ namespace Mini_Core_Banking_Project.Test.Customers.Command
                 CustomerId = newAccount.CustomerId,
                 AccountType = newAccount.AccountType,
                 Id = Guid.NewGuid(),
-                Status = "Active"
+                Status =Status.Active
             };
 
-            ResponseModel response = new ResponseModel
-            {
-                Data = accountResponseDTO,
-                Message = "Account created successfully",
-                Success = true
-            };
+            Result response = Result.Success<CreateAccountCommand>("Account created successfully", accountResponseDTO);
             //Act
             var request = new CreateCustomerCommand(CreateCustomerDTO);
             _mediator.Setup(x => x.Send(It.IsAny<CreateAccountCommand>(),It.IsAny<CancellationToken>())).ReturnsAsync(response);
-            var handler = new CreateCustomerCommandHandler(_contextMock.Object, _mapper.Object, _mediator.Object);
+            var handler = new CreateCustomerCommandHandler(_contextMock.Object, _mapper.Object, _mediator.Object,_mockHasher.Object);
             var result = await handler.Handle(request, CancellationToken.None);
             //Assert
             Assert.NotNull(result);
@@ -87,7 +90,7 @@ namespace Mini_Core_Banking_Project.Test.Customers.Command
            
             //Act
             var request = new CreateCustomerCommand(createCustomer);
-            var handler = new CreateCustomerCommandHandler(_contextMock.Object, _mapper.Object, _mediator.Object);
+            var handler = new CreateCustomerCommandHandler(_contextMock.Object, _mapper.Object, _mediator.Object,_mockHasher.Object);
             var result = await handler.Handle(request, CancellationToken.None);
             //Assert
             Assert.NotNull(result);

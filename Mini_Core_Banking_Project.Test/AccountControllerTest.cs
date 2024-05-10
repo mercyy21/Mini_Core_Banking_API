@@ -1,14 +1,16 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Mini_Core_Banking_Project.Controllers;
-using Domain.Enums;
-using Domain.DTO;
+using API.Controllers;
+using Application.Enums;
+using Application.DTO;
 using Moq;
 using Application.Accounts.AccountCommand;
 using Application.Accounts.AccountQuery;
-using Domain.Domain.Entity;
+using Application.Domain.Entity;
+using Application.Domain.Enums;
+using Application.ResultType;
 
-namespace Mini_Core_Banking_Project.Test
+namespace API.Test
 {
    public class AccountControllerTest
     {
@@ -26,10 +28,10 @@ namespace Mini_Core_Banking_Project.Test
             {
                 CustomerId= Guid.NewGuid(),
                 Id= Guid.NewGuid(),
-                AccountType= "1",
+                AccountType= AccountType.Savings,
                 Balance= 0,
                 CreatedAt = DateTime.Now,
-                Status = "Active"
+                Status = Status.Active
             }
         };
 
@@ -50,12 +52,7 @@ namespace Mini_Core_Banking_Project.Test
                 Status = accounts[0].Status
             };
 
-            ResponseModel response = new ResponseModel
-            {
-                Data = accountResponseDTO,
-                Message = "Account created successfully",
-                Success = true
-            };
+            Result response = Result.Success<CreateAccountCommand>("Account created successfully", accountResponseDTO);
             //Act
             CreateAccountCommand request = new CreateAccountCommand(accountDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -81,12 +78,7 @@ namespace Mini_Core_Banking_Project.Test
                 Id = accounts[0].Id,
                 Status= accounts[0].Status
             };
-            ResponseModel response = new ResponseModel
-            {
-                Data = accountResponseDTO,
-                Message = "Customers Account returned successfully",
-                Success = true
-            };
+            Result response = Result.Success<ViewCustomersAccountQuery>("Customers Account returned successfully", accountResponseDTO);
             //Act
             ViewCustomersAccountQuery request = new ViewCustomersAccountQuery(customerId);
             _mockMediator.Setup(x=> x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -104,12 +96,7 @@ namespace Mini_Core_Banking_Project.Test
             //Arrange
             Guid accountId = Guid.NewGuid();
 
-            ResponseModel response = new ResponseModel
-            {
-                Message= "Account Activated",
-                Success = true
-            };
-
+            Result response = Result.Success<ActivateAccountCommand>("Account Activated");
             //Act
             ActivateAccountCommand request = new ActivateAccountCommand(accountId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -126,11 +113,7 @@ namespace Mini_Core_Banking_Project.Test
         {
             //Arrange
             Guid accountId = Guid.NewGuid();
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Account Deactivated",
-                Success = true
-            };
+            Result response = Result.Success<DeactivateAccountCommand>("Account Deactivated");
 
             //Act
             DeactivateAccountCommand request = new DeactivateAccountCommand(accountId);
@@ -151,14 +134,10 @@ namespace Mini_Core_Banking_Project.Test
             double amount = 1000;
             TransactDTO transactDTO = new TransactDTO
             {
-                Signature = "Ughfol193ejak=",
+                TransactionDetails = "Ughfol193ejak=",
                 Amount = 200
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Amount successfully deposited",
-                Success = true
-            };
+            Result response = Result.Success<DepositCommand>("Amount successfully deposited");
             //Act
             DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -176,14 +155,10 @@ namespace Mini_Core_Banking_Project.Test
             //Arrange 
             TransactDTO transactDTO = new TransactDTO
             {
-                Signature = "Ughfol193ejak=",
+                TransactionDetails = "Ughfol193ejak=",
                 Amount = 50
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Amount successfully withdrawn",
-                Success = true
-            };
+            Result response = Result.Success<WithdrawCommand>("Amount successfully withdrawn");
             //Act
             WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -199,18 +174,14 @@ namespace Mini_Core_Banking_Project.Test
         {
             //Arrange 
             Guid customerId = Guid.NewGuid();
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Account Deleted Successfully",
-                Success = true
-            };
+            Result response = Result.Success<DeleteAccountCommand>("Account Deleted Successfully");
 
             //Act
             DeleteAccountCommand request = new DeleteAccountCommand(customerId);
             _mockMediator.Setup(x=> x.Send(request, CancellationToken.None)).ReturnsAsync(response);
             IActionResult result =await _accountController.DeleteAccount(customerId);
             OkObjectResult? resultType = result as OkObjectResult;
-            ResponseModel actualResult = resultType.Value as ResponseModel;
+            Result actualResult = resultType.Value as Result;
 
             //Assert
             Assert.NotNull(result);
@@ -229,11 +200,7 @@ namespace Mini_Core_Banking_Project.Test
                 CustomerId = Guid.NewGuid(),
                 AccountType = AccountType.Savings,
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Customer already has an account",
-                Success = false
-            };
+            Result response = Result.Failure<CreateAccountCommand>("Customer already has an account");
             //Act
             CreateAccountCommand request = new CreateAccountCommand(accountDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -253,11 +220,7 @@ namespace Mini_Core_Banking_Project.Test
                 CustomerId = Guid.NewGuid(),
                 AccountType = AccountType.Savings,
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Customer Does Not Exist",
-                Success = false
-            };
+            Result response = Result.Failure<CreateAccountCommand>("Customer Does Not Exist");
             //Act
             CreateAccountCommand request = new CreateAccountCommand(accountDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -273,11 +236,7 @@ namespace Mini_Core_Banking_Project.Test
         {
             //Arrange
             Guid customerId = Guid.NewGuid();
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Account does not exist",
-                Success = false
-            };
+            Result response = Result.Failure<ViewCustomersAccountQuery>("Account does not exist");
             //Act
             ViewCustomersAccountQuery request = new ViewCustomersAccountQuery(customerId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -294,11 +253,7 @@ namespace Mini_Core_Banking_Project.Test
         {
             //Arrange
             Guid accountId = Guid.NewGuid();
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Account Does Not Exist",
-                Success = false
-            };
+            Result response = Result.Failure<ActivateAccountCommand>("Account Does Not Exist");
 
             //Act
             ActivateAccountCommand request = new ActivateAccountCommand(accountId);
@@ -315,11 +270,7 @@ namespace Mini_Core_Banking_Project.Test
         {
             //Arrange
             Guid accountId = Guid.NewGuid();
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Account Does Not Exist",
-                Success = false
-            };
+            Result response = Result.Failure<DeactivateAccountCommand>("Account Does Not Exist");
             //Act
             DeactivateAccountCommand request = new DeactivateAccountCommand(accountId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -336,14 +287,10 @@ namespace Mini_Core_Banking_Project.Test
             //Arrange 
             TransactDTO transactDTO = new TransactDTO
             {
-                Signature = "Pghfsl193ejaw=",
+                TransactionDetails = "Pghfsl193ejaw=",
                 Amount = 200
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Account does not exist",
-                Success = false
-            };
+            Result response = Result.Failure<DepositCommand>("Account does not exist");
             //Act
             DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -361,14 +308,10 @@ namespace Mini_Core_Banking_Project.Test
             //Arrange 
             TransactDTO transactDTO = new TransactDTO
             {
-                Signature = "Ughfol193ejak=",
+                TransactionDetails = "Ughfol193ejak=",
                 Amount = 0
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Amount must be greater than zero",
-                Success = false
-            };
+            Result response = Result.Failure<DepositCommand>("Amount must be greater than zero");
             //Act
             DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -386,14 +329,10 @@ namespace Mini_Core_Banking_Project.Test
             //Arrange 
             TransactDTO transactDTO = new TransactDTO
             {
-                Signature = "Pghfsl193ejaw=",
+                TransactionDetails = "Pghfsl193ejaw=",
                 Amount = 200
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Account does not exist",
-                Success = false
-            };
+            Result response = Result.Failure<WithdrawCommand>("Account does not exist");
             //Act
             WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -410,14 +349,10 @@ namespace Mini_Core_Banking_Project.Test
             //Arrange 
             TransactDTO transactDTO = new TransactDTO
             {
-                Signature = "Ughfol193ejak=",
+                TransactionDetails = "Ughfol193ejak=",
                 Amount = 200000
             };
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Amount exceeds balance",
-                Success = false
-            };
+            Result response = Result.Failure<WithdrawCommand>("Amount exceeds balance");
             //Act
             WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -434,17 +369,13 @@ namespace Mini_Core_Banking_Project.Test
         {
             //Arrange 
             Guid customerId = Guid.NewGuid();
-            ResponseModel response = new ResponseModel
-            {
-                Message = "Account does not exist",
-                Success = false
-            };
+            Result response = Result.Failure<DeleteAccountCommand>("Account does not exist");
             //Act
             DeleteAccountCommand request = new DeleteAccountCommand(customerId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
             IActionResult result =await _accountController.DeleteAccount(customerId);
             BadRequestObjectResult? resultType = result as BadRequestObjectResult;
-            ResponseModel actualResult = resultType.Value as ResponseModel;
+            Result actualResult = resultType.Value as Result;
 
             //Assert
             Assert.NotNull(result);

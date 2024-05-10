@@ -7,7 +7,7 @@ namespace Application.Accounts.Validator
     {
         public WithdrawValidator() 
         {
-            RuleFor(c=>c.TransactDTO.Signature).NotEmpty().NotNull();
+            RuleFor(c=>c.TransactDTO.TransactionDetails).NotEmpty().NotNull();
             RuleFor(c=> c.TransactDTO.Amount).NotEmpty().NotNull().GreaterThan(0).WithMessage("Must be greater than zero");
         }
     }

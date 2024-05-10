@@ -1,17 +1,12 @@
 ﻿using Application.Customers.Command;
-using Infrastructure.DBContext;
 using Microsoft.AspNetCore.Http;
-using Mini_Core_Banking_Project.Test.Generate;
-using Mini_Core_Banking_Project.Test.Services;
+using API.Test.Generate;
+using API.Test.Services;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+using Application.Interfaces;
 
-namespace Mini_Core_Banking_Project.Test.Customers.Command
+namespace API.Test.Customers.Command
 {
     public class LogoutCustomerCommandTest
     {

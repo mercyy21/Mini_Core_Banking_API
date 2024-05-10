@@ -1,6 +1,6 @@
-﻿using Domain.Domain.Entity;
+﻿using Application.Domain.Entity;
 
-namespace Mini_Core_Banking_Project.Test.Generate;
+namespace API.Test.Generate;
 
 public static class FakeRefreshToken
 {

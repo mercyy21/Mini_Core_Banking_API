@@ -1,7 +1,6 @@
-﻿using Application.Customers.Jwt;
-using Domain.Domain.Entity;
-using Domain.DTO;
-using Infrastructure.DBContext;
+﻿using Application.Interfaces;
+using Application.Domain.Entity;
+using Application.DTO;
 using MediatR;
 
 namespace Application.RefreshTokens

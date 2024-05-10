@@ -34,9 +34,6 @@
             "projectReferences": {
               "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj"
-              },
-              "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -77,6 +74,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             }
           },
           "imports": [
@@ -203,6 +204,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Application.csproj"
+              },
               "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj"
               }
@@ -289,8 +293,8 @@
               "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project.csproj": {
-                "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project.csproj"
+              "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj": {
+                "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj"
               }
             }
           }
@@ -365,12 +369,12 @@
         }
       }
     },
-    "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project.csproj": {
+    "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project.csproj",
-        "projectName": "Mini_Core_Banking_Project",
-        "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project.csproj",
+        "projectUniqueName": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj",
         "packagesPath": "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\obj\\",
         "projectStyle": "PackageReference",
@@ -395,9 +399,6 @@
             "projectReferences": {
               "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Application.csproj": {
                 "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Application.csproj"
-              },
-              "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj"
               },
               "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Infrastructure\\Infrastructure.csproj": {
                 "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Infrastructure\\Infrastructure.csproj"

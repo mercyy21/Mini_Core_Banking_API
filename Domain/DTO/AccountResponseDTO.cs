@@ -1,6 +1,7 @@
-﻿using Domain.Enums;
+﻿using Application.Domain.Enums;
+using Application.Enums;
 
-namespace Domain.DTO
+namespace Application.DTO
 {
     public class AccountResponseDTO 
     {
@@ -9,7 +10,7 @@ namespace Domain.DTO
         public string AccountNumber { get; set; }
         public AccountType AccountType { get; set; }
         public double Balance { get; set; }
-        public string Status { get; set; }
+        public Status Status { get; set; }
 
     }
 }

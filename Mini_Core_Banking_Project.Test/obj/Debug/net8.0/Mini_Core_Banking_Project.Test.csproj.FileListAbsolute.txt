@@ -1,10 +1,7 @@
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\CoverletSourceRootsMapping_Mini_Core_Banking_Project.Test
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\testhost.dll
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Mini_Core_Banking_Project.deps.json
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Mini_Core_Banking_Project.runtimeconfig.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\appsettings.json
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Mini_Core_Banking_Project.exe
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\testhost.exe
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
@@ -99,9 +96,6 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Mini_Core_Banking_Project.dll
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Mini_Core_Banking_Project.pdb
-C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Mini_Core_Banking_Project.xml
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.csproj.AssemblyReference.cache
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\obj\Debug\net8.0\Mini_Core_Banking_Project.Test.AssemblyInfoInputs.cache
@@ -237,3 +231,9 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\AutoFixture.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\AutoFixture.Xunit2.dll
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\Fare.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\API.deps.json
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\API.runtimeconfig.json
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\API.exe
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\API.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\API.pdb
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\bin\Debug\net8.0\API.xml

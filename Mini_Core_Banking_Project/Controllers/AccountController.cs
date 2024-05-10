@@ -1,14 +1,14 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Domain.DTO;
+using Application.DTO;
 using Application.Accounts.AccountCommand;
 using Application.Accounts.AccountQuery;
 using Microsoft.AspNetCore.Authorization;
 using Application.Accounts.Command;
-using Application.UtilityService;
+using Application.ResultType;
 
 
-namespace Mini_Core_Banking_Project.Controllers
+namespace API.Controllers
 {
     [Authorize]
     [ApiController]
@@ -49,9 +49,9 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                if (account == null) { return BadRequest(new ResponseModel { Message = "Invalid account request", Success = false }); }
-                ResponseModel createAccount =await  _mediator.Send(new CreateAccountCommand(account));
-                if (!createAccount.Success)
+                if (account == null) { return base.BadRequest(Application.ResultType.Result.Failure("Invalid account request")); }
+                Application.ResultType.Result createAccount =await _mediator.Send(new CreateAccountCommand(account));
+                if (!createAccount.Succeeded)
                 {
                     return BadRequest(createAccount);
                 }
@@ -59,31 +59,12 @@ namespace Mini_Core_Banking_Project.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseModel { Message = ex.Message.ToString() });
+                return base.BadRequest(Application.ResultType.Result.Failure( ex.Message.ToString()));
 
             }
 
         }
-        /// <summary>
-        /// Create Signature for Deposit and Withdraw here
-        /// </summary>
-        /// <param name="signatureDTO"></param>
-        /// <returns></returns>
-        [HttpPost("/Signature")]
-        public async Task<IActionResult> Signature([FromBody]SignatureDTO signatureDTO)
-        {
-            try
-            {
-               ResponseModel response= await _mediator.Send(new SignatureCommand(signatureDTO));
-                return Ok(response);
-
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(new ResponseModel { Message= ex.Message.ToString(), Success = false});
-            }
-        }
+      
 
         /// <summary>
         /// Deposit Money into Customers Account
@@ -109,8 +90,8 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel response = await _mediator.Send(new DepositCommand(transactDTO));
-                if (!response.Success)
+                Application.ResultType.Result response = await _mediator.Send(new DepositCommand(transactDTO));
+                if (!response.Succeeded)
                 {
                     return BadRequest(response);
                 }
@@ -119,7 +100,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new ResponseModel { Message = ex.Message.ToString(), Success = false });
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
             }
 
         }
@@ -144,8 +125,8 @@ namespace Mini_Core_Banking_Project.Controllers
         [HttpPost("/Withdraw")]
         public async Task<IActionResult> Withdraw(TransactDTO transactDTO)
         {
-            ResponseModel response = await _mediator.Send(new WithdrawCommand(transactDTO));
-            if (!response.Success)
+            Application.ResultType.Result response = await _mediator.Send(new WithdrawCommand(transactDTO));
+            if (!response.Succeeded)
             {
                 return BadRequest(response);
             }
@@ -173,8 +154,8 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel message = await _mediator.Send(new TransferCommand(transfer));
-                if (!message.Success)
+                Application.ResultType.Result message = await _mediator.Send(new TransferCommand(transfer));
+                if (!message.Succeeded)
                 {
                     return BadRequest(message);
                 }
@@ -183,7 +164,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new ResponseModel { Message = ex.Message.ToString(), Success = false });
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
             }
         }
 
@@ -197,8 +178,8 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel existingAccount =await _mediator.Send(new ViewCustomersAccountQuery(customerId));
-                if (existingAccount.Data == null)
+                Application.ResultType.Result existingAccount =await _mediator.Send(new ViewCustomersAccountQuery(customerId));
+                if (existingAccount.Entity == null)
                 {
                     return NotFound(existingAccount);
                 }
@@ -207,7 +188,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception exception)
             {
 
-                return BadRequest(new ResponseModel { Success = false, Message = exception.Message.ToString() });
+                return base.BadRequest(Application.ResultType.Result.Failure(exception.Message.ToString()));
             }
 
         }
@@ -221,8 +202,8 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel activatedCustomer = await _mediator.Send(new ActivateAccountCommand(accountId));
-                if (activatedCustomer.Success == false)
+                Application.ResultType.Result activatedCustomer = await _mediator.Send(new ActivateAccountCommand(accountId));
+                if (!activatedCustomer.Succeeded)
                 {
                     return BadRequest(activatedCustomer);
                 }
@@ -234,7 +215,7 @@ namespace Mini_Core_Banking_Project.Controllers
 
             catch (Exception exception)
             {
-                return BadRequest(new ResponseModel { Message = exception.Message, Success = false });
+                return base.BadRequest(Application.ResultType.Result.Failure( exception.Message));
             }
         }
         /// <summary>
@@ -247,8 +228,8 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel deactivatedCustomer =await  _mediator.Send(new DeactivateAccountCommand(accountId));
-                if (deactivatedCustomer.Success == false)
+                Application.ResultType.Result deactivatedCustomer =await _mediator.Send(new DeactivateAccountCommand(accountId));
+                if (!deactivatedCustomer.Succeeded)
                 {
                     return BadRequest(deactivatedCustomer);
                 }
@@ -257,7 +238,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception exception)
             {
 
-                return BadRequest(new ResponseModel { Message = exception.Message.ToString(), Success = false });
+                return base.BadRequest(Application.ResultType.Result.Failure(exception.Message.ToString()));
             }
 
 
@@ -272,8 +253,8 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel response =await  _mediator.Send(new DeleteAccountCommand(customerId));
-                if(!response.Success)
+                Application.ResultType.Result response =await _mediator.Send(new DeleteAccountCommand(customerId));
+                if(!response.Succeeded)
                 {
                     return BadRequest(response);
                 }
@@ -281,7 +262,7 @@ namespace Mini_Core_Banking_Project.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest( new ResponseModel { Message = ex.Message.ToString(),Success= false});
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
             }
         }
     }

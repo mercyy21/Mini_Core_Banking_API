@@ -1,5 +1,5 @@
-﻿using Domain.Domain.Entity;
-using Domain.DTO;
+﻿using Application.Domain.Entity;
+using Application.DTO;
 
 namespace Application.Customers.Helper
 {

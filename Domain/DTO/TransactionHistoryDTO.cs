@@ -1,8 +1,8 @@
-﻿using Domain.Domain.Entity;
-using Domain.Domain.Enums;
+﻿using Application.Domain.Entity;
+using Application.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Domain.DTO
+namespace Application.DTO
 {
     public class TransactionHistoryDTO
     {

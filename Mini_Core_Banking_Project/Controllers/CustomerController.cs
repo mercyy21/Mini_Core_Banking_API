@@ -2,12 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Application.Customers.CustomerCommand;
 using Application.Customers.CustomerQuery;
-using Domain.DTO;
+using Application.DTO;
 using Application.Customers.Command;
 using Microsoft.AspNetCore.Authorization;
 using Application.Customers.Query;
+using Application.ResultType;
 
-namespace Mini_Core_Banking_Project.Controllers
+namespace API.Controllers
 {
     [Authorize]
     [ApiController]
@@ -40,8 +41,8 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                LoginResponseDTO login = await _mediator.Send(new LoginCustomerCommand(loginDTO.Email,loginDTO.Password));
-                if(!login.Success)
+                Application.ResultType.Result login = await _mediator.Send(new LoginCustomerCommand(loginDTO.Email, loginDTO.Password));
+                if(!login.Succeeded)
                 {
                     return Unauthorized();
                 }
@@ -50,7 +51,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new LoginResponseDTO { Message= ex.Message.ToString(), Success=false});
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
             }
         }
         /// <summary>
@@ -62,13 +63,13 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel response = await _mediator.Send(new  LogoutCustomerCommand());
+                Application.ResultType.Result response = await _mediator.Send(new LogoutCustomerCommand());
                 return Ok(response);
             }
             catch (Exception ex)
             {
 
-                return BadRequest(new ResponseModel { Message= ex.Message, Success= false});
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
             }
         } 
 
@@ -99,9 +100,9 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                if (customer == null) { return BadRequest(new ResponseModel { Message = "Invalid customer request", Success = false}); }
-                MultipleDataResponseModel createCustomer = await _mediator.Send(new CreateCustomerCommand(customer));
-                if (!createCustomer.Success)
+                if (customer == null) { return base.BadRequest(Application.ResultType.Result.Failure("Invalid customer request")); }
+                Application.ResultType.Result createCustomer = await _mediator.Send(new CreateCustomerCommand(customer));
+                if (!createCustomer.Succeeded)
                 {
                     return BadRequest(createCustomer);
                 }
@@ -111,7 +112,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new ResponseModel { Message = ex.Message.ToString(), Success= false });
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
             }
 
         }
@@ -142,9 +143,9 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                
-                ResponseModel updateCustomer = await _mediator.Send(new UpdateCustomerCommand(customerId,customer));
-                if(!updateCustomer.Success)
+
+                Application.ResultType.Result updateCustomer = await _mediator.Send(new UpdateCustomerCommand(customerId, customer));
+                if(!updateCustomer.Succeeded)
                 {
                     return BadRequest(updateCustomer);
                 }
@@ -153,7 +154,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new ResponseModel { Message = ex.Message.ToString(),Success= false});
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
             } 
         }
         /// <summary>
@@ -166,7 +167,7 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel viewCustomer = await _mediator.Send( new ViewCustomersQuery());
+                Application.ResultType.Result viewCustomer = await _mediator.Send( new ViewCustomersQuery());
                 if(viewCustomer.Message== "No customer has been created")
                 {
                     return BadRequest(viewCustomer);
@@ -177,7 +178,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception exception)
             {
 
-                return BadRequest(new ResponseModel { Message = exception.Message, Success=false });
+                return base.BadRequest(Application.ResultType.Result.Failure(exception.Message));
             }
 
         }
@@ -193,10 +194,10 @@ namespace Mini_Core_Banking_Project.Controllers
             {
                 if (customerId == Guid.Empty)
                 {
-                    return BadRequest( new ResponseModel { Message = "Field cannot be empty", Success = false });
+                    return base.BadRequest(Application.ResultType.Result.Failure("Field cannot be empty"));
                 }
-                ResponseModel viewCustomerById = await _mediator.Send(new ViewCustomerByIdQuery(customerId));
-                if (!viewCustomerById.Success)
+                Application.ResultType.Result viewCustomerById = await _mediator.Send(new ViewCustomerByIdQuery(customerId));
+                if (!viewCustomerById.Succeeded)
                 {
                     return BadRequest(viewCustomerById);
                 }
@@ -208,7 +209,7 @@ namespace Mini_Core_Banking_Project.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponseModel { Message = ex.Message, Success= false });
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
                 
             }
         }
@@ -224,10 +225,10 @@ namespace Mini_Core_Banking_Project.Controllers
             {
                 if (customerId == Guid.Empty)
                 {
-                    return BadRequest(new ResponseModel { Message="Field cannot be empty", Success=false });
+                    return base.BadRequest(Application.ResultType.Result.Failure("Field cannot be empty"));
                 }
-                ResponseModel response = await _mediator.Send(new ViewCustomerTransaction_HistoryByIdQuery(customerId));
-                if (!response.Success)
+                Application.ResultType.Result response = await _mediator.Send(new ViewCustomerTransaction_HistoryByIdQuery(customerId));
+                if (!response.Succeeded)
                 {
                     return BadRequest(response);
                 }
@@ -239,7 +240,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new ResponseModel { Message= ex.Message, Success=false});
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
             }
         }
 
@@ -255,8 +256,8 @@ namespace Mini_Core_Banking_Project.Controllers
         {
             try
             {
-                ResponseModel deletedCustomer = await _mediator.Send(new DeleteCustomerCommand(customerId));
-                if (!deletedCustomer.Success)
+                Application.ResultType.Result deletedCustomer = await _mediator.Send(new DeleteCustomerCommand(customerId));
+                if (!deletedCustomer.Succeeded)
                 {
                     return BadRequest(deletedCustomer);
                 }
@@ -265,7 +266,7 @@ namespace Mini_Core_Banking_Project.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new ResponseModel { Message = ex.Message, Success = false });
+                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
             }
 
         }

@@ -1,4 +1,4 @@
-﻿namespace Domain.DTO
+﻿namespace Application.DTO
 {
     public class LoginDTO
     {

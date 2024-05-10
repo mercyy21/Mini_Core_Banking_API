@@ -1,30 +1,32 @@
-﻿using Domain.Domain.Entity;
-using Domain.DTO;
-using Infrastructure.DBContext;
+﻿using Application.Domain.Entity;
+using Application.Domain.Enums;
+using Application.Interfaces;
+using Application.ResultType;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Accounts.AccountCommand
 {
-    public sealed record DeleteAccountCommand(Guid CustomerId) : IRequest<ResponseModel>;
-    public sealed class DeleteAccountCommandHandler : IRequestHandler<DeleteAccountCommand, ResponseModel>
+    public sealed record DeleteAccountCommand(Guid CustomerId) : IRequest<Result>;
+    public sealed class DeleteAccountCommandHandler : IRequestHandler<DeleteAccountCommand, Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         public DeleteAccountCommandHandler(IMiniCoreBankingDbContext context)
         {
             _context = context;
         }
-        public async Task<ResponseModel> Handle(DeleteAccountCommand command, CancellationToken cancellationToken)
+        public async Task<Result> Handle(DeleteAccountCommand command, CancellationToken cancellationToken)
         {
             //Delete Account
             Account existingAccount = await _context.Accounts.FirstOrDefaultAsync(x => x.CustomerId == command.CustomerId);
             if (existingAccount == null)
             {
-                return new ResponseModel { Message = "Account does not exist", Success = false };
+                return Result.Failure<DeleteAccountCommand>("Account does not exist");
             }
-            _context.Accounts.Remove(existingAccount);
+            existingAccount.Status= Status.Removed;
+            _context.Accounts.Update(existingAccount);
             await _context.SaveChangesAsync(cancellationToken);
-            return new ResponseModel { Message = "Account Deleted Successfully", Success = true };
+            return Result.Failure<DeleteAccountCommand>("Account Deleted Successfully");
         }
     }
 }

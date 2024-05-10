@@ -1,8 +1,9 @@
-﻿namespace Domain.DTO
+﻿namespace Application.DTO
 {
     public class TransferDTO
     {
-        public string AccountNumber { get; set; }
+        public string? SendersAccountNumber { get; set; }
+        public string? ReceiversAccountNumber { get; set; }
         public double Amount { get; set; }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using Application.RefreshTokens;
-using Domain.DTO;
+using Application.DTO;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Mini_Core_Banking_Project.Controllers
+namespace API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Bank/RefreshToken")]
     public class RefreshTokenController : Controller

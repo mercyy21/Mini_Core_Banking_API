@@ -1,14 +1,14 @@
-﻿using Domain.Domain.Entity;
-using Domain.DTO;
-using Infrastructure.DBContext;
+﻿using Application.Domain.Entity;
+using Application.Interfaces;
+using Application.ResultType;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Customers.Query
 {
-    public sealed record ViewCustomerTransaction_HistoryByIdQuery(Guid CustomerId):IRequest<ResponseModel>;
+    public sealed record ViewCustomerTransaction_HistoryByIdQuery(Guid CustomerId):IRequest<Result>;
 
-    public sealed class ViewCustomerTransaction_HistoryByIdQueryHandler : IRequestHandler<ViewCustomerTransaction_HistoryByIdQuery, ResponseModel>
+    public sealed class ViewCustomerTransaction_HistoryByIdQueryHandler : IRequestHandler<ViewCustomerTransaction_HistoryByIdQuery, Result>
     {
         private readonly IMiniCoreBankingDbContext _dbContext;
 
@@ -17,12 +17,12 @@ namespace Application.Customers.Query
             _dbContext = dbContext;
         }
 
-        public async Task<ResponseModel> Handle(ViewCustomerTransaction_HistoryByIdQuery query, CancellationToken cancellationToken)
+        public async Task<Result> Handle(ViewCustomerTransaction_HistoryByIdQuery query, CancellationToken cancellationToken)
         {
             bool customerExists = await _dbContext.Customers.AnyAsync(x=> x.Id == query.CustomerId);
             if(!customerExists)
             {
-                return new ResponseModel { Message="Customer does not exist", Success=false };
+                return Result.Failure<ViewCustomerTransaction_HistoryByIdQuery>("Customer does not exist");
             }
             //Get Customers Transaction History
             Transaction transactionHistory = await _dbContext.Transactions.FirstOrDefaultAsync(x => x.CustomerId == query.CustomerId);
@@ -30,13 +30,13 @@ namespace Application.Customers.Query
             //Check if it exists 
             if(transactionHistory == null)
             {
-                return new ResponseModel { Message = "Customer has made zero transactions", Success = false };
+                return Result.Failure<ViewCustomerTransaction_HistoryByIdQuery>("Customer has made zero transactions");
             }
             var customerTransactions = _dbContext.Transactions
                 .Where(o => o.CustomerId == query.CustomerId)
                 .ToList();
 
-            return new ResponseModel { Data = customerTransactions, Message = "Customers transaction history returned successfully", Success = true };
+            return Result.Success<ViewCustomerTransaction_HistoryByIdQuery>("Customers transaction history returned successfully", customerTransactions);
         }
     }
 }

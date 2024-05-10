@@ -1,15 +1,17 @@
 ﻿using AutoMapper;
-using Domain.Domain.Entity;
-using Domain.DTO;
-using Infrastructure.DBContext;
+using Application.Domain.Entity;
+using Application.DTO;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using Application.Domain.Enums;
+using Application.ResultType;
 
 namespace Application.Customers.CustomerQuery
 {
-    public sealed record ViewCustomersQuery() : IRequest<ResponseModel>;
+    public sealed record ViewCustomersQuery() : IRequest<ResultType.Result>;
 
-    public sealed class ViewCustomerQueryHandler : IRequestHandler<ViewCustomersQuery, ResponseModel>
+    public sealed class ViewCustomerQueryHandler : IRequestHandler<ViewCustomersQuery, ResultType.Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -19,17 +21,20 @@ namespace Application.Customers.CustomerQuery
             _mapper = mapper;
         }
 
-        public async Task<ResponseModel> Handle(ViewCustomersQuery query, CancellationToken cancellationToken)
+        public async Task<ResultType.Result> Handle(ViewCustomersQuery query, CancellationToken cancellationToken)
         {
             //View Customer
 
             List<Customer> customerList = await _context.Customers.ToListAsync();
             if (customerList == null || !customerList.Any())
             {
-                return new ResponseModel { Message = "No customer has been created", Success = false };
+                return Result.Failure<ViewCustomersQuery>("No customer has been created");
             }
+            var customerTransactions =customerList
+                .Where(o => o.Status == Status.Active || o.Status==Status.Inactive)
+                .ToList();
             List<CustomerResponseDTO> customerDTO = _mapper.Map<List<CustomerResponseDTO>>(customerList);
-            return new ResponseModel { Data = customerDTO, Message = "Customers returned successfully", Success = true };
+            return Result.Success<ViewCustomersQuery>("Customers returned successfully", customerDTO);
 
         }
     }

@@ -1,56 +1,53 @@
 ﻿using Application.TransactionHistory;
-using Domain.Domain.Entity;
-using Domain.Domain.Enums;
-using Domain.DTO;
-using Infrastructure.DBContext;
+using Application.Domain.Entity;
+using Application.Domain.Enums;
+using Application.DTO;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
+using Application.Interfaces;
+using Application.ResultType;
 
 namespace Application.Accounts.Command
 {
-    public sealed record TransferCommand(TransferDTO TransferDTO) : IRequest<ResponseModel>;
+    public sealed record TransferCommand(TransferDTO TransferDTO) : IRequest<ResultType.Result>;
 
-    public sealed class TrasferCommandHandler : IRequestHandler<TransferCommand, ResponseModel>
+    public sealed class TransferCommandHandler : IRequestHandler<TransferCommand, ResultType.Result>
     {
         private readonly IMiniCoreBankingDbContext _bankingDbContext;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IMediator _mediator;
 
-        public TrasferCommandHandler(IMiniCoreBankingDbContext bankingDbContext, IHttpContextAccessor httpContextAccessor, IMediator mediator)
+        public TransferCommandHandler(IMiniCoreBankingDbContext bankingDbContext, IMediator mediator)
         {
             _bankingDbContext = bankingDbContext;
-            _httpContextAccessor = httpContextAccessor;
             _mediator = mediator;
         }
 
-        public async Task<ResponseModel> Handle(TransferCommand command, CancellationToken cancellationToken)
+        public async Task<ResultType.Result> Handle(TransferCommand command, CancellationToken cancellationToken)
         {
-            Account receiversAccount = await _bankingDbContext.Accounts.FirstOrDefaultAsync(x => x.AccountNumber == command.TransferDTO.AccountNumber);
+            Account receiversAccount = await _bankingDbContext.Accounts.FirstOrDefaultAsync(x => x.AccountNumber == command.TransferDTO.ReceiversAccountNumber);
+            Account sendersAccount = await _bankingDbContext.Accounts.FirstOrDefaultAsync(x => x.AccountNumber == command.TransferDTO.SendersAccountNumber);
+            if(sendersAccount==null)
+            {
+                return Result.Failure<TransferCommand>("Senders account does not exist");
+
+            }
             if (receiversAccount == null)
             {
-                return new ResponseModel { Message = "Account does not exist", Success = false };
-            }
-            string customerId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(customerId))
-            {
-                // User ID not found in authentication context (unlikely scenario)
-                return new ResponseModel { Message = "Customer's ID not found", Success = false };
-            }
-            Account sendersAccount = await _bankingDbContext.Accounts.FirstOrDefaultAsync(x => x.CustomerId == Guid.Parse(customerId));
-            if(receiversAccount.AccountNumber == sendersAccount.AccountNumber)
-            {
-                return new ResponseModel { Message = "Cannot transfer to self", Success=false };
-            }
-            if(sendersAccount.Status== Status.Inactive.ToString() || receiversAccount.Status == Status.Inactive.ToString())
-            {
-                return new ResponseModel { Message = "Account is inactive", Success = false };
+                return Result.Failure<TransferCommand>("Receivers account does not exist");
             }
             if (sendersAccount.Balance < command.TransferDTO.Amount)
             {
-                return new ResponseModel { Message = "Insufficient Funds", Success = false };
+                return Result.Failure<TransferCommand>("Insufficient Funds");
             }
+            if(receiversAccount.AccountNumber == sendersAccount.AccountNumber)
+            {
+                return Result.Failure<TransferCommand>("Cannot transfer to self");
+            }
+            if(sendersAccount.Status== Status.Inactive || receiversAccount.Status == Status.Inactive)
+            {
+                return Result.Failure<TransferCommand>("Account is inactive");
+            }
+         
             sendersAccount.Balance -= command.TransferDTO.Amount;
             receiversAccount.Balance += command.TransferDTO.Amount;
             _bankingDbContext.Accounts.Update(sendersAccount);
@@ -59,7 +56,7 @@ namespace Application.Accounts.Command
             //Record Transaction 
             TransactionHistoryDTO transactionDTO = new TransactionHistoryDTO();
             transactionDTO.Amount = command.TransferDTO.Amount;
-            transactionDTO.CustomerId = Guid.Parse(customerId);
+            transactionDTO.CustomerId = sendersAccount.CustomerId;
             transactionDTO.TransactAt = DateTime.Now;
             transactionDTO.TransactionType = TransactionType.Debit;
             transactionDTO.NarrationType = NarrationType.Transfer;
@@ -69,7 +66,7 @@ namespace Application.Accounts.Command
             await _mediator.Send(new RecordTransactionCommand(transactionDTO));
 
             await _bankingDbContext.SaveChangesAsync(cancellationToken);
-            return new ResponseModel { Message = "Transfer Success", Success = true };
+            return Result.Success<TransferCommand>("Transfer Success");
         }
     }
 }

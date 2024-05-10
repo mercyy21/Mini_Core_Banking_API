@@ -1,4 +1,4 @@
-﻿namespace Domain.Domain.Enums
+﻿namespace Application.Domain.Enums
 {
     public enum TransactionType
     {

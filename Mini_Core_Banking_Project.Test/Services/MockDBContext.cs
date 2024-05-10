@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MockQueryable.Moq;
 
-namespace Mini_Core_Banking_Project.Test.Services
+namespace API.Test.Services
 {
     public static class MockDBContext
     {

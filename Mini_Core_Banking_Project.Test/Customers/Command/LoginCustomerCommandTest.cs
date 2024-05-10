@@ -1,13 +1,11 @@
 ﻿using Application.Customers.Command;
-using Application.Customers.Jwt;
-using Application.Customers.PasswordHasher;
-using Domain.Domain.Entity;
-using Infrastructure.DBContext;
-using Mini_Core_Banking_Project.Test.Generate;
-using Mini_Core_Banking_Project.Test.Services;
+using Application.Interfaces;
+using Application.Domain.Entity;
+using API.Test.Generate;
+using API.Test.Services;
 using Moq;
 
-namespace Mini_Core_Banking_Project.Test.Customers.Command
+namespace API.Test.Customers.Command
 {
     public class LoginCustomerCommandTest
     {

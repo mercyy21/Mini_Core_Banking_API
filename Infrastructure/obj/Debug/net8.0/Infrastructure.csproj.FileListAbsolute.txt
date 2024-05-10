@@ -16,3 +16,5 @@ C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\bin
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json
 C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\obj\Debug\net8.0\Infrastr.15EFFBFE.Up2Date
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\bin\Debug\net8.0\Application.dll
+C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Infrastructure\bin\Debug\net8.0\Application.pdb

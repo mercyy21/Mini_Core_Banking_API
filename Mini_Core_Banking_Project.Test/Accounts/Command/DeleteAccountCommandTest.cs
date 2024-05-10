@@ -1,10 +1,10 @@
 ﻿using Application.Accounts.AccountCommand;
-using Infrastructure.DBContext;
-using Mini_Core_Banking_Project.Test.Generate;
-using Mini_Core_Banking_Project.Test.Services;
+using API.Test.Generate;
+using API.Test.Services;
 using Moq;
+using Application.Interfaces;
 
-namespace Mini_Core_Banking_Project.Test.Accounts.Command;
+namespace API.Test.Accounts.Command;
 
 public class DeleteAccountCommandTest
 {

@@ -1,19 +1,20 @@
 ﻿using Application.Accounts.Helper;
 using AutoMapper;
-using Domain.Domain.Entity;
-using Domain.Domain.Enums;
-using Domain.DTO;
-using Infrastructure.DBContext;
+using Application.Domain.Entity;
+using Application.Domain.Enums;
+using Application.DTO;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
+using Application.Interfaces;
+using Application.ResultType;
 
 namespace Application.Accounts.AccountCommand
 {
 
-    public sealed record CreateAccountCommand(AccountDTO AccountDTO) : IRequest<ResponseModel>;
+    public sealed record CreateAccountCommand(AccountDTO AccountDTO) : IRequest<ResultType.Result>;
 
-    public sealed class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, ResponseModel>
+    public sealed class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, ResultType.Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -22,28 +23,28 @@ namespace Application.Accounts.AccountCommand
             _context = context;
             _mapper = mapper;
         }
-        public async Task<ResponseModel> Handle(CreateAccountCommand command, CancellationToken cancellationToken)
+        public async Task<ResultType.Result> Handle(CreateAccountCommand command, CancellationToken cancellationToken)
         {
             //Create Account
             AccountHelper accountHelper = new AccountHelper(); //Response helper
             bool existingAccount = await _context.Accounts.AnyAsync(x => x.CustomerId == command.AccountDTO.CustomerId);
             if (existingAccount)
             {
-                return new ResponseModel { Message = "Customer already has an account", Success = false };
+                return ResultType.Result.Failure<CreateAccountCommand>("Customer already has an account");
             }
             bool customer = await _context.Customers.AnyAsync(x => x.Id == command.AccountDTO.CustomerId);
             if (!customer)
             {
-                return new ResponseModel { Message = "Customer does not exist", Success = false };
+                return ResultType.Result.Failure<CreateAccountCommand>("Customer does not exist");
             }
             Account newAccount = new Account
             {
                 AccountNumber= GenerateAccountNumber(),
                 CustomerId = command.AccountDTO.CustomerId,
-                AccountType = command.AccountDTO.AccountType.ToString(),
+                AccountType = command.AccountDTO.AccountType,
                 Balance = 0,
                 CreatedAt = DateTime.Now,
-                Status = Status.Active.ToString()
+                Status = Status.Active
             };
 
             await _context.Accounts.AddAsync(newAccount);
@@ -51,7 +52,7 @@ namespace Application.Accounts.AccountCommand
 
             AccountResponseDTO accountDTO = _mapper.Map<AccountResponseDTO>(accountHelper.AccountResponse(newAccount));
 
-            return new ResponseModel { Data = accountDTO, Message = "Account created successfully", Success = true };
+            return ResultType.Result.Success<CreateAccountCommand>("Account created successfully", accountDTO);
 
         }
         public string GenerateAccountNumber()

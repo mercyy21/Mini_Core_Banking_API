@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
-using Domain.Domain.Entity;
-using Domain.DTO;
-using Infrastructure.DBContext;
+using Application.Domain.Entity;
+using Application.DTO;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Application.Interfaces;
+using Application.ResultType;
 
 namespace Application.Customers.CustomerQuery
 {
-    public sealed record ViewCustomerByIdQuery(Guid CustomerId) : IRequest<ResponseModel>;
+    public sealed record ViewCustomerByIdQuery(Guid CustomerId) : IRequest<ResultType.Result>;
 
-    public sealed class ViewCustomerByIdQueryHandler : IRequestHandler<ViewCustomerByIdQuery, ResponseModel>
+    public sealed class ViewCustomerByIdQueryHandler : IRequestHandler<ViewCustomerByIdQuery, ResultType.Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -18,16 +19,16 @@ namespace Application.Customers.CustomerQuery
             _context = context;
             _mapper = mapper;
         }
-        public async Task<ResponseModel> Handle(ViewCustomerByIdQuery query, CancellationToken cancellationToken)
+        public async Task<Result> Handle(ViewCustomerByIdQuery query, CancellationToken cancellationToken)
         {
             //View Customer by ID
             Customer customer = await _context.Customers.FirstOrDefaultAsync(x => x.Id==query.CustomerId);
             if (customer == null)
             {
-                return new ResponseModel { Message = "Customer does not exist", Success = false };
+                return Result.Failure<ViewCustomerByIdQuery>( "Customer does not exist");
             }
             CustomerResponseDTO customerDTO = _mapper.Map<CustomerResponseDTO>(customer);
-            return new ResponseModel { Data = customerDTO, Message = "Customer returned successfully", Success = true };
+            return Result.Success<ViewCustomerByIdQuery>( "Customer returned successfully",customerDTO);
         }
     }
 }

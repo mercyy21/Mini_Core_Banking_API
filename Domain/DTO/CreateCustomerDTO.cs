@@ -1,6 +1,6 @@
-﻿using Domain.Enums;
+﻿using Application.Enums;
 
-namespace Domain.DTO
+namespace Application.DTO
 {
     public class CreateCustomerDTO
     {

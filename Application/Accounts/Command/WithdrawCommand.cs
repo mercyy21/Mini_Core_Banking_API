@@ -1,16 +1,16 @@
 ﻿using Application.TransactionHistory;
-using Domain.Domain.Entity;
-using Domain.Domain.Enums;
-using Domain.DTO;
-using Domain.Interfaces;
-using Infrastructure.DBContext;
+using Application.Domain.Entity;
+using Application.Domain.Enums;
+using Application.DTO;
+using Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Application.ResultType;
 
 namespace Application.Accounts.AccountCommand
 {
-    public sealed record WithdrawCommand(TransactDTO TransactDTO) : IRequest<ResponseModel>;
-    public sealed class WithdrawCommandHandler : IRequestHandler<WithdrawCommand, ResponseModel>
+    public sealed record WithdrawCommand(TransactDTO TransactDTO) : IRequest<ResultType.Result>;
+    public sealed class WithdrawCommandHandler : IRequestHandler<WithdrawCommand, ResultType.Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IDecrypt _decrypt;
@@ -21,15 +21,16 @@ namespace Application.Accounts.AccountCommand
             _decrypt = decrypt;
             _mediator = mediator;
         }
-        public async Task<ResponseModel> Handle(WithdrawCommand command, CancellationToken cancellationToken)
+        public async Task<ResultType.Result> Handle(WithdrawCommand command, CancellationToken cancellationToken)
         {
             //Withdraw Money
             //Decrypt Signature
-            string decryptedSignature = _decrypt.Decrypt(command.TransactDTO.Signature);
+            string decryptedSignature = _decrypt.Decrypt(command.TransactDTO.TransactionDetails);
+            
             //Check if signature contains + (to be used as a delimiter)
             if (!decryptedSignature.Contains("+"))
             {
-                return new ResponseModel { Message = "Invalid Signature", Success = false };
+                return ResultType.Result.Failure<WithdrawCommand>("Invalid Signature");
             }
             string[] parts = decryptedSignature.Split('+');
             string accountNumber = parts[0];
@@ -37,21 +38,24 @@ namespace Application.Accounts.AccountCommand
             Account existingAccount = await _context.Accounts.FirstOrDefaultAsync(x => x.AccountNumber == accountNumber);
             if (existingAccount == null)
             {
-                return new ResponseModel { Message = "Account does not exist", Success = false };
+                return ResultType.Result.Success<WithdrawCommand>("Account does not exist");
             }
-            if (existingAccount.Status == Status.Inactive.ToString())
+            if (command.TransactDTO.Amount > existingAccount.Balance)
             {
-                return new ResponseModel { Message = "Account is inactive", Success = false };
+                return ResultType.Result.Failure<WithdrawCommand>("Amount exceeds balance");
+            }
+
+            
+            if (existingAccount.Status == Status.Inactive)
+            {
+                return ResultType.Result.Failure<WithdrawCommand>("Account is inactive");
             }
             Customer existingCustomer = await _context.Customers.FirstOrDefaultAsync(x => x.Id == existingAccount.CustomerId);
             if (existingCustomer.Email != email)
             {
-                return new ResponseModel { Message = "Email does not match", Success = false };
+                return ResultType.Result.Failure<WithdrawCommand>("Email does not match");
             }
-            if (command.TransactDTO.Amount > existingAccount.Balance)
-            {
-                return new ResponseModel { Message = "Amount exceeds balance", Success = false };
-            }
+      
 
             existingAccount.Balance -= command.TransactDTO.Amount;
             _context.Accounts.Update(existingAccount);
@@ -67,7 +71,7 @@ namespace Application.Accounts.AccountCommand
             await _mediator.Send(new RecordTransactionCommand(transactionDTO));
 
             await _context.SaveChangesAsync(cancellationToken);
-            return new ResponseModel { Message = "Amount successfully withdrawn", Success = true };
+            return ResultType.Result.Success<WithdrawCommand>("Amount successfully withdrawn");
         }
     }
 }

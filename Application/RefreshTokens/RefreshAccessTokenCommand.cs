@@ -2,12 +2,13 @@
 using Application.Domain.Entity;
 using Application.DTO;
 using MediatR;
+using Application.ResultType;
 
 namespace Application.RefreshTokens
 {
-    public sealed record RefreshAccessTokenCommand(string refreshToken): IRequest<AuthenticatedResponse>;
+    public sealed record RefreshAccessTokenCommand(string refreshToken): IRequest<Result>;
 
-    public sealed class RefreshTokenHandler : IRequestHandler<RefreshAccessTokenCommand,AuthenticatedResponse>
+    public sealed class RefreshTokenHandler : IRequestHandler<RefreshAccessTokenCommand,Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IJwtToken _jwtToken;
@@ -17,20 +18,24 @@ namespace Application.RefreshTokens
             _context = context;
             _jwtToken = jwtToken;
         }
-        public async Task<AuthenticatedResponse> Handle(RefreshAccessTokenCommand command, CancellationToken cancellationToken)
+        public async Task<Result> Handle(RefreshAccessTokenCommand command, CancellationToken cancellationToken)
         {
            RefreshToken storedToken = _context.RefreshTokens.FirstOrDefault(x=> x.Token== command.refreshToken);
             if (storedToken == null)
             {
-                return new AuthenticatedResponse { Message = "Invalid Token", Success = false };
+                return Result.Failure<RefreshAccessTokenCommand>("Invalid Token");
             }
             if (storedToken.ExpiresAt < DateTime.UtcNow)
             {
-                return new AuthenticatedResponse { Message = "Refresh token has expired", Success = false };
+                return Result.Failure<RefreshAccessTokenCommand>("Refresh token has expired");
             }
             Customer existingCustomer= _context.Customers.FirstOrDefault(x=> x.Id== storedToken.CustomerId);
             string accessToken = _jwtToken.GenerateJWTToken(existingCustomer);
-            return new AuthenticatedResponse { Message = "Access Token Generated Successfully", Success= true, AccessToken=  accessToken };
+            var response = new
+            {
+                AccessToken = accessToken
+            };
+            return  Result.Success<RefreshAccessTokenCommand>( "Access Token Generated Successfully", response);
 
 
 

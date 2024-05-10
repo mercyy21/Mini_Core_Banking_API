@@ -49,8 +49,8 @@ namespace API.Controllers
         {
             try
             {
-                if (account == null) { return base.BadRequest(Application.ResultType.Result.Failure("Invalid account request")); }
-                Application.ResultType.Result createAccount =await _mediator.Send(new CreateAccountCommand(account));
+                if (account == null) { return base.BadRequest(Result.Failure("Invalid account request")); }
+                Result createAccount =await _mediator.Send(new CreateAccountCommand(account));
                 if (!createAccount.Succeeded)
                 {
                     return BadRequest(createAccount);
@@ -59,7 +59,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return base.BadRequest(Application.ResultType.Result.Failure( ex.Message.ToString()));
+                return base.BadRequest(Result.Failure( ex.Message.ToString()));
 
             }
 
@@ -90,7 +90,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result response = await _mediator.Send(new DepositCommand(transactDTO));
+                Result response = await _mediator.Send(new DepositCommand(transactDTO));
                 if (!response.Succeeded)
                 {
                     return BadRequest(response);
@@ -100,7 +100,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
+                return base.BadRequest(Result.Failure(ex.Message.ToString()));
             }
 
         }
@@ -125,7 +125,7 @@ namespace API.Controllers
         [HttpPost("/Withdraw")]
         public async Task<IActionResult> Withdraw(TransactDTO transactDTO)
         {
-            Application.ResultType.Result response = await _mediator.Send(new WithdrawCommand(transactDTO));
+            Result response = await _mediator.Send(new WithdrawCommand(transactDTO));
             if (!response.Succeeded)
             {
                 return BadRequest(response);
@@ -154,7 +154,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result message = await _mediator.Send(new TransferCommand(transfer));
+                Result message = await _mediator.Send(new TransferCommand(transfer));
                 if (!message.Succeeded)
                 {
                     return BadRequest(message);
@@ -164,7 +164,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
+                return base.BadRequest(Result.Failure(ex.Message.ToString()));
             }
         }
 
@@ -178,7 +178,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result existingAccount =await _mediator.Send(new ViewCustomersAccountQuery(customerId));
+                Result existingAccount =await _mediator.Send(new ViewCustomersAccountQuery(customerId));
                 if (existingAccount.Entity == null)
                 {
                     return NotFound(existingAccount);
@@ -188,7 +188,7 @@ namespace API.Controllers
             catch (Exception exception)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(exception.Message.ToString()));
+                return base.BadRequest(Result.Failure(exception.Message.ToString()));
             }
 
         }
@@ -202,7 +202,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result activatedCustomer = await _mediator.Send(new ActivateAccountCommand(accountId));
+                Result activatedCustomer = await _mediator.Send(new ActivateAccountCommand(accountId));
                 if (!activatedCustomer.Succeeded)
                 {
                     return BadRequest(activatedCustomer);
@@ -215,7 +215,7 @@ namespace API.Controllers
 
             catch (Exception exception)
             {
-                return base.BadRequest(Application.ResultType.Result.Failure( exception.Message));
+                return base.BadRequest(Result.Failure( exception.Message));
             }
         }
         /// <summary>
@@ -228,7 +228,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result deactivatedCustomer =await _mediator.Send(new DeactivateAccountCommand(accountId));
+                Result deactivatedCustomer =await _mediator.Send(new DeactivateAccountCommand(accountId));
                 if (!deactivatedCustomer.Succeeded)
                 {
                     return BadRequest(deactivatedCustomer);
@@ -238,7 +238,7 @@ namespace API.Controllers
             catch (Exception exception)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(exception.Message.ToString()));
+                return base.BadRequest(Result.Failure(exception.Message.ToString()));
             }
 
 
@@ -253,7 +253,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result response =await _mediator.Send(new DeleteAccountCommand(customerId));
+                Result response =await _mediator.Send(new DeleteAccountCommand(customerId));
                 if(!response.Succeeded)
                 {
                     return BadRequest(response);
@@ -262,7 +262,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
+                return base.BadRequest(Result.Failure(ex.Message.ToString()));
             }
         }
     }

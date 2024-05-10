@@ -9,6 +9,7 @@ namespace Application.Domain.Entity
         public Guid Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public Status Status { get; set; }
+        public string? StatusDesc {  get; set; }
         public DateTime? UpdatedAt { get; set; }
 
     }

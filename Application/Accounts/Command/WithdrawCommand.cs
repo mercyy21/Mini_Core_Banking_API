@@ -30,7 +30,7 @@ namespace Application.Accounts.AccountCommand
             //Check if signature contains + (to be used as a delimiter)
             if (!decryptedSignature.Contains("+"))
             {
-                return ResultType.Result.Failure<WithdrawCommand>("Invalid Signature");
+                return Result.Failure<WithdrawCommand>("Invalid Signature");
             }
             string[] parts = decryptedSignature.Split('+');
             string accountNumber = parts[0];
@@ -38,22 +38,22 @@ namespace Application.Accounts.AccountCommand
             Account existingAccount = await _context.Accounts.FirstOrDefaultAsync(x => x.AccountNumber == accountNumber);
             if (existingAccount == null)
             {
-                return ResultType.Result.Success<WithdrawCommand>("Account does not exist");
+                return Result.Success<WithdrawCommand>("Account does not exist");
             }
             if (command.TransactDTO.Amount > existingAccount.Balance)
             {
-                return ResultType.Result.Failure<WithdrawCommand>("Amount exceeds balance");
+                return Result.Failure<WithdrawCommand>("Amount exceeds balance");
             }
 
             
             if (existingAccount.Status == Status.Inactive)
             {
-                return ResultType.Result.Failure<WithdrawCommand>("Account is inactive");
+                return Result.Failure<WithdrawCommand>("Account is inactive");
             }
             Customer existingCustomer = await _context.Customers.FirstOrDefaultAsync(x => x.Id == existingAccount.CustomerId);
             if (existingCustomer.Email != email)
             {
-                return ResultType.Result.Failure<WithdrawCommand>("Email does not match");
+                return Result.Failure<WithdrawCommand>("Email does not match");
             }
       
 
@@ -66,12 +66,14 @@ namespace Application.Accounts.AccountCommand
             transactionDTO.CustomerId = existingAccount.CustomerId;
             transactionDTO.TransactAt = DateTime.Now;
             transactionDTO.TransactionType =TransactionType.Debit;
-            transactionDTO.NarrationType = NarrationType.Withdraw;
+            transactionDTO.TransactionTypeDesc = TransactionType.Debit.ToString();
+            transactionDTO.Narration = NarrationType.Withdraw;
+            transactionDTO.NarrationDesc = NarrationType.Withdraw.ToString();
             transactionDTO.SendersAccountNumber = existingAccount.AccountNumber;
             await _mediator.Send(new RecordTransactionCommand(transactionDTO));
 
             await _context.SaveChangesAsync(cancellationToken);
-            return ResultType.Result.Success<WithdrawCommand>("Amount successfully withdrawn");
+            return Result.Success<WithdrawCommand>("Amount successfully withdrawn");
         }
     }
 }

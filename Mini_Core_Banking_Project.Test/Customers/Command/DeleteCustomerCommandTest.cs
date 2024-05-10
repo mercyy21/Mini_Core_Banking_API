@@ -29,7 +29,7 @@ public class DeleteCustomerCommandTest
         var mock = MockDBContext.GetQueryableMockDbSet(FakeCustomer.GenerateCustomer());
         _contextMock.Setup(x => x.Customers).Returns(mock);
         Guid customerId = Guid.Parse("ee99627b-a78d-47df-8bc1-94bd3501a4fd");
-        Result response = Result.Success<DeleteCustomerCommand>("Account Deleted Successfully");
+        Application.ResultType.Result response = Application.ResultType.Result.Success<DeleteCustomerCommand>("Account Deleted Successfully");
         //Act
         var request = new DeleteCustomerCommand(customerId);
         _mediator.Setup(x => x.Send(It.IsAny<DeleteAccountCommand>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);

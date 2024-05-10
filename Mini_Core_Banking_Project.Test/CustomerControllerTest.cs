@@ -70,7 +70,7 @@ namespace API.Test
                 CustomerResponse = customerResponse,
                 AccountResponseDTO = accountResponseDTO
             };
-            Result response = Result.Success("Customer created successfully",responses);
+            Result response = Result.Success("Customer created successfully", responses);
 
             //Act
             CreateCustomerCommand request = new CreateCustomerCommand(customerRequest);
@@ -99,7 +99,7 @@ namespace API.Test
                 Address = customers[0].Address,
                 PhoneNumber = customers[0].FirstName
             };
-            Result response = Application.ResultType.Result.Success<ViewCustomersQuery>("Customers returned successfully");
+            Result response =  Result.Success<ViewCustomersQuery>("Customers returned successfully");
             //Act
             ViewCustomersQuery request = new ViewCustomersQuery();
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -195,7 +195,7 @@ namespace API.Test
                 PhoneNumber = customers[0].FirstName,
                 AccountType = AccountType.Savings
             };
-            Result response = Result.Failure<CreateCustomerCommand>("Customer already exists");
+            Result response =  Result.Failure<CreateCustomerCommand>("Customer already exists");
             //Act
             CreateCustomerCommand request = new CreateCustomerCommand(customerRequest);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -288,7 +288,7 @@ namespace API.Test
                 PhoneNumber = customers[0].FirstName
             };
 
-            Result response = Application.ResultType.Result.Failure<DeleteCustomerCommand>("Customer Does Not Exist");
+            Result response = Result.Failure<DeleteCustomerCommand>("Customer Does Not Exist");
             //Act
             DeleteCustomerCommand request = new DeleteCustomerCommand(customerId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);

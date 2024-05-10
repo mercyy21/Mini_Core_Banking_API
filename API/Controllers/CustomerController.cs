@@ -7,6 +7,7 @@ using Application.Customers.Command;
 using Microsoft.AspNetCore.Authorization;
 using Application.Customers.Query;
 using Application.ResultType;
+using Application.TransactionHistory;
 
 namespace API.Controllers
 {
@@ -41,7 +42,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result login = await _mediator.Send(new LoginCustomerCommand(loginDTO.Email, loginDTO.Password));
+                Result login = await _mediator.Send(new LoginCustomerCommand(loginDTO.Email, loginDTO.Password));
                 if(!login.Succeeded)
                 {
                     return Unauthorized();
@@ -51,7 +52,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
+                return base.BadRequest(Result.Failure(ex.Message.ToString()));
             }
         }
         /// <summary>
@@ -63,13 +64,13 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result response = await _mediator.Send(new LogoutCustomerCommand());
+                Result response = await _mediator.Send(new LogoutCustomerCommand());
                 return Ok(response);
             }
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
+                return base.BadRequest(Result.Failure(ex.Message));
             }
         } 
 
@@ -100,8 +101,8 @@ namespace API.Controllers
         {
             try
             {
-                if (customer == null) { return base.BadRequest(Application.ResultType.Result.Failure("Invalid customer request")); }
-                Application.ResultType.Result createCustomer = await _mediator.Send(new CreateCustomerCommand(customer));
+                if (customer == null) { return base.BadRequest(Result.Failure("Invalid customer request")); }
+                Result createCustomer = await _mediator.Send(new CreateCustomerCommand(customer));
                 if (!createCustomer.Succeeded)
                 {
                     return BadRequest(createCustomer);
@@ -112,7 +113,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
+                return base.BadRequest(Result.Failure(ex.Message.ToString()));
             }
 
         }
@@ -144,7 +145,7 @@ namespace API.Controllers
             try
             {
 
-                Application.ResultType.Result updateCustomer = await _mediator.Send(new UpdateCustomerCommand(customerId, customer));
+                Result updateCustomer = await _mediator.Send(new UpdateCustomerCommand(customerId, customer));
                 if(!updateCustomer.Succeeded)
                 {
                     return BadRequest(updateCustomer);
@@ -154,7 +155,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
+                return base.BadRequest(Result.Failure(ex.Message.ToString()));
             } 
         }
         /// <summary>
@@ -167,7 +168,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result viewCustomer = await _mediator.Send( new ViewCustomersQuery());
+                Result viewCustomer = await _mediator.Send( new ViewCustomersQuery());
                 if(viewCustomer.Message== "No customer has been created")
                 {
                     return BadRequest(viewCustomer);
@@ -178,7 +179,7 @@ namespace API.Controllers
             catch (Exception exception)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(exception.Message));
+                return base.BadRequest(Result.Failure(exception.Message));
             }
 
         }
@@ -194,9 +195,9 @@ namespace API.Controllers
             {
                 if (customerId == Guid.Empty)
                 {
-                    return base.BadRequest(Application.ResultType.Result.Failure("Field cannot be empty"));
+                    return base.BadRequest(Result.Failure("Field cannot be empty"));
                 }
-                Application.ResultType.Result viewCustomerById = await _mediator.Send(new ViewCustomerByIdQuery(customerId));
+                Result viewCustomerById = await _mediator.Send(new ViewCustomerByIdQuery(customerId));
                 if (!viewCustomerById.Succeeded)
                 {
                     return BadRequest(viewCustomerById);
@@ -209,7 +210,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
+                return base.BadRequest(Result.Failure(ex.Message));
                 
             }
         }
@@ -225,9 +226,9 @@ namespace API.Controllers
             {
                 if (customerId == Guid.Empty)
                 {
-                    return base.BadRequest(Application.ResultType.Result.Failure("Field cannot be empty"));
+                    return base.BadRequest(Result.Failure("Field cannot be empty"));
                 }
-                Application.ResultType.Result response = await _mediator.Send(new ViewCustomerTransaction_HistoryByIdQuery(customerId));
+                Result response = await _mediator.Send(new ViewCustomerTransaction_HistoryByIdQuery(customerId));
                 if (!response.Succeeded)
                 {
                     return BadRequest(response);
@@ -240,8 +241,27 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
+                return base.BadRequest(Result.Failure(ex.Message));
             }
+        }
+        [HttpDelete("/deleteTransaction")]
+        public async Task<IActionResult> DeleteTrancactionHistory()
+        {
+            try
+            {
+                Result deletedCustomer = await _mediator.Send(new DeleteTransactionHistoryCommand());
+                if (!deletedCustomer.Succeeded)
+                {
+                    return BadRequest(deletedCustomer);
+                }
+                return Ok(deletedCustomer);
+            }
+            catch (Exception ex)
+            {
+
+                return base.BadRequest(Result.Failure(ex.Message));
+            }
+
         }
 
         /// <summary>
@@ -256,7 +276,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result deletedCustomer = await _mediator.Send(new DeleteCustomerCommand(customerId));
+                Result deletedCustomer = await _mediator.Send(new DeleteCustomerCommand(customerId));
                 if (!deletedCustomer.Succeeded)
                 {
                     return BadRequest(deletedCustomer);
@@ -266,7 +286,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
+                return base.BadRequest(Result.Failure(ex.Message));
             }
 
         }

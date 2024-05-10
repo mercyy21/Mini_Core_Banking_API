@@ -19,25 +19,6 @@ namespace Infrastructure.DBContext
         {
             return base.SaveChangesAsync(cancellationToken);
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder
-                .Entity<Customer>()
-                .Property(d => d.Status)
-                .HasConversion<string>();
-            modelBuilder.Entity<Account>()
-                         .Property(d => d.Status)
-                         .HasConversion<string>();
-            modelBuilder.Entity<Account>()
-                         .Property(d => d.AccountType)
-                         .HasConversion<string>();
-            modelBuilder.Entity<Transaction>()
-                        .Property(d => d.TransactionType)
-                        .HasConversion<string>();
-            modelBuilder.Entity<Transaction>()
-                       .Property(d => d.Narration)
-                       .HasConversion<string>();
-        }
 
 
     }

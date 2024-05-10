@@ -39,7 +39,7 @@ public class TransferCommandTest
             ReceiversAccountNumber = "6894628348",
             Amount = 100
         };
-        Result response = Result.Success<RecordTransactionCommand>("Transaction recorded successfully", transaction);
+        Application.ResultType.Result response = Application.ResultType.Result.Success<RecordTransactionCommand>("Transaction recorded successfully", transaction);
         _mediatorMock.Setup(x => x.Send(It.IsAny<RecordTransactionCommand>(), It.IsAny < CancellationToken>())).ReturnsAsync(response);
 
         //Act

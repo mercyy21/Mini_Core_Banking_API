@@ -3,6 +3,7 @@ using Application.DTO;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Application.ResultType;
 
 namespace API.Controllers
 {
@@ -26,8 +27,8 @@ namespace API.Controllers
         {
             try
             {
-                AuthenticatedResponse response = await _mediator.Send(new RefreshAccessTokenCommand(refreshToken));
-                if (!response.Success)
+                Result response = await _mediator.Send(new RefreshAccessTokenCommand(refreshToken));
+                if (!response.Succeeded)
                 {
                     return BadRequest(response);
                 }
@@ -37,7 +38,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return BadRequest(new AuthenticatedResponse { Message = ex.Message, Success=false });
+                return BadRequest(Result.Failure(ex.Message));
             }
         }
     }

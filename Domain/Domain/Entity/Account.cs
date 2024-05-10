@@ -10,6 +10,7 @@ namespace Application.Domain.Entity
         public string? AccountNumber { get; set; }
         [Required]
         public AccountType AccountType { get; set; }
+        public string? AccountTypeDesc { get; set;}
         public double Balance { get; set; }
         public DateTime? ClosedAt { get; set; }
     }

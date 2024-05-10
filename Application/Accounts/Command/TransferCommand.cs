@@ -28,24 +28,24 @@ namespace Application.Accounts.Command
             Account sendersAccount = await _bankingDbContext.Accounts.FirstOrDefaultAsync(x => x.AccountNumber == command.TransferDTO.SendersAccountNumber);
             if(sendersAccount==null)
             {
-                return Result.Failure<TransferCommand>("Senders account does not exist");
+                return ResultType.Result.Failure<TransferCommand>("Senders account does not exist");
 
             }
             if (receiversAccount == null)
             {
-                return Result.Failure<TransferCommand>("Receivers account does not exist");
+                return ResultType.Result.Failure<TransferCommand>("Receivers account does not exist");
             }
             if (sendersAccount.Balance < command.TransferDTO.Amount)
             {
-                return Result.Failure<TransferCommand>("Insufficient Funds");
+                return ResultType.Result.Failure<TransferCommand>("Insufficient Funds");
             }
             if(receiversAccount.AccountNumber == sendersAccount.AccountNumber)
             {
-                return Result.Failure<TransferCommand>("Cannot transfer to self");
+                return ResultType.Result.Failure<TransferCommand>("Cannot transfer to self");
             }
             if(sendersAccount.Status== Status.Inactive || receiversAccount.Status == Status.Inactive)
             {
-                return Result.Failure<TransferCommand>("Account is inactive");
+                return ResultType.Result.Failure<TransferCommand>("Account is inactive");
             }
          
             sendersAccount.Balance -= command.TransferDTO.Amount;
@@ -59,14 +59,16 @@ namespace Application.Accounts.Command
             transactionDTO.CustomerId = sendersAccount.CustomerId;
             transactionDTO.TransactAt = DateTime.Now;
             transactionDTO.TransactionType = TransactionType.Debit;
-            transactionDTO.NarrationType = NarrationType.Transfer;
+            transactionDTO.TransactionTypeDesc = TransactionType.Debit.ToString();
+            transactionDTO.Narration = NarrationType.Transfer;
+            transactionDTO.NarrationDesc= NarrationType.Transfer.ToString();
             transactionDTO.SendersAccountNumber = sendersAccount.AccountNumber;
             transactionDTO.ReceiversAccountNumber= receiversAccount.AccountNumber;
             //Record transaction
             await _mediator.Send(new RecordTransactionCommand(transactionDTO));
 
             await _bankingDbContext.SaveChangesAsync(cancellationToken);
-            return Result.Success<TransferCommand>("Transfer Success");
+            return ResultType.Result.Success<TransferCommand>("Transfer Success");
         }
     }
 }

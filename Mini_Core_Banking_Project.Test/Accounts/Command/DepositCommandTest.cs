@@ -40,7 +40,7 @@ public class DepositCommandTest
             TransactionDetails = "Ughfol193ejak=",
             Amount = 200
         };
-        Result response = Result.Success<RecordTransactionCommand>("Transaction recorded successfully");
+        Application.ResultType.Result response = Application.ResultType.Result.Success<RecordTransactionCommand>("Transaction recorded successfully");
         _mediator.Setup(x => x.Send(It.IsAny<RecordTransactionCommand>(), It.IsAny<CancellationToken>())).ReturnsAsync(response);
         _decryptService.Setup(x => x.Decrypt(It.IsAny<string>())).Returns(decryptedSignature);
 

@@ -12,9 +12,9 @@ using Application.ResultType;
 namespace Application.Accounts.AccountCommand
 {
 
-    public sealed record CreateAccountCommand(AccountDTO AccountDTO) : IRequest<ResultType.Result>;
+    public sealed record CreateAccountCommand(AccountDTO AccountDTO) : IRequest<Result>;
 
-    public sealed class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, ResultType.Result>
+    public sealed class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -23,28 +23,30 @@ namespace Application.Accounts.AccountCommand
             _context = context;
             _mapper = mapper;
         }
-        public async Task<ResultType.Result> Handle(CreateAccountCommand command, CancellationToken cancellationToken)
+        public async Task<Result> Handle(CreateAccountCommand command, CancellationToken cancellationToken)
         {
             //Create Account
             AccountHelper accountHelper = new AccountHelper(); //Response helper
             bool existingAccount = await _context.Accounts.AnyAsync(x => x.CustomerId == command.AccountDTO.CustomerId);
             if (existingAccount)
             {
-                return ResultType.Result.Failure<CreateAccountCommand>("Customer already has an account");
+                return Result.Failure<CreateAccountCommand>("Customer already has an account");
             }
             bool customer = await _context.Customers.AnyAsync(x => x.Id == command.AccountDTO.CustomerId);
             if (!customer)
             {
-                return ResultType.Result.Failure<CreateAccountCommand>("Customer does not exist");
+                return Result.Failure<CreateAccountCommand>("Customer does not exist");
             }
             Account newAccount = new Account
             {
                 AccountNumber= GenerateAccountNumber(),
                 CustomerId = command.AccountDTO.CustomerId,
                 AccountType = command.AccountDTO.AccountType,
+                AccountTypeDesc = command.AccountDTO.AccountType.ToString(),
                 Balance = 0,
                 CreatedAt = DateTime.Now,
-                Status = Status.Active
+                Status = Status.Active,
+                StatusDesc= Status.Active.ToString()
             };
 
             await _context.Accounts.AddAsync(newAccount);
@@ -52,7 +54,7 @@ namespace Application.Accounts.AccountCommand
 
             AccountResponseDTO accountDTO = _mapper.Map<AccountResponseDTO>(accountHelper.AccountResponse(newAccount));
 
-            return ResultType.Result.Success<CreateAccountCommand>("Account created successfully", accountDTO);
+            return Result.Success<CreateAccountCommand>("Account created successfully", accountDTO);
 
         }
         public string GenerateAccountNumber()

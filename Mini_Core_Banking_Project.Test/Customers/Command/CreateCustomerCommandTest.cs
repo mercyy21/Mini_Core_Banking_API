@@ -60,7 +60,7 @@ namespace API.Test.Customers.Command
                 Status =Status.Active
             };
 
-            Result response = Result.Success<CreateAccountCommand>("Account created successfully", accountResponseDTO);
+            Application.ResultType.Result response = Application.ResultType.Result.Success<CreateAccountCommand>("Account created successfully", accountResponseDTO);
             //Act
             var request = new CreateCustomerCommand(CreateCustomerDTO);
             _mediator.Setup(x => x.Send(It.IsAny<CreateAccountCommand>(),It.IsAny<CancellationToken>())).ReturnsAsync(response);

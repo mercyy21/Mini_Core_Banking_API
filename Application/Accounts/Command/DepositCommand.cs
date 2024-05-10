@@ -29,12 +29,12 @@ namespace Application.Accounts.AccountCommand
             //Check if signature contains + (to be used as a delimiter)
             if (command.TransactDTO.Amount <= 0)
             {
-                return ResultType.Result.Failure<DepositCommand>("Amount must be greater than zero");
+                return Result.Failure<DepositCommand>("Amount must be greater than zero");
 
             }
             if (!decryptedTransactionDetails.Contains("+"))
             {
-                return ResultType.Result.Failure<DepositCommand>("Invalid Signature");
+                return Result.Failure<DepositCommand>("Invalid Signature");
             }
             string[] parts = decryptedTransactionDetails.Split('+');
             string accountNumber = parts[0];
@@ -62,7 +62,10 @@ namespace Application.Accounts.AccountCommand
             transactionDTO.CustomerId = existingAccount.CustomerId;
             transactionDTO.TransactAt = DateTime.Now;
             transactionDTO.TransactionType = TransactionType.Credit;
-            transactionDTO.NarrationType = NarrationType.Deposit;
+            transactionDTO.TransactionTypeDesc= TransactionType.Credit.ToString();
+            transactionDTO.Narration = NarrationType.Deposit;
+            transactionDTO.NarrationDesc = NarrationType.Deposit.ToString();
+
             transactionDTO.ReceiversAccountNumber = existingAccount.AccountNumber;
             //Record transactionDTO.
             await _mediator.Send(new RecordTransactionCommand(transactionDTO));

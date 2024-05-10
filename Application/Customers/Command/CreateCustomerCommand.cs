@@ -11,9 +11,9 @@ using Application.ResultType;
 
 namespace Application.Customers.CustomerCommand
 {
-    public sealed record CreateCustomerCommand(CreateCustomerDTO CustomerDTO) : IRequest<ResultType.Result>;
+    public sealed record CreateCustomerCommand(CreateCustomerDTO CustomerDTO) : IRequest<Result>;
 
-    public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, ResultType.Result>
+    public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -27,7 +27,7 @@ namespace Application.Customers.CustomerCommand
             _mediator = mediator;
             _hasher = hasher;
         }
-        public async Task<ResultType.Result> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
 
             CustomerHelper helper = new CustomerHelper(); 
@@ -36,7 +36,7 @@ namespace Application.Customers.CustomerCommand
             var existingCustomer = await _context.Customers.AnyAsync(x => x.Email == request.CustomerDTO.Email);
             if (existingCustomer)
             {
-                return ResultType.Result.Failure<CreateCustomerCommand>("Customer already exists");
+                return Result.Failure<CreateCustomerCommand>("Customer already exists");
             }
             //Hashing Password
             var (hashedPassword, salt)=_hasher.HashPassword(request.CustomerDTO.Password);
@@ -51,7 +51,8 @@ namespace Application.Customers.CustomerCommand
                 Password = hashedPassword,
                 Salt = salt,
                 CreatedAt = DateTime.Now,
-                Status = Status.Active
+                Status = Status.Active,
+                StatusDesc= Status.Active.ToString()
             };
 
             //Save to Database
@@ -66,13 +67,13 @@ namespace Application.Customers.CustomerCommand
                 CustomerId = entity.Id,
                 AccountType = request.CustomerDTO.AccountType
             };
-            ResultType.Result response = await _mediator.Send(new CreateAccountCommand(newAccount), cancellationToken);
+            Result response = await _mediator.Send(new CreateAccountCommand(newAccount), cancellationToken);
             var responses = new
             {
                 CustomerDTO = customerDTO,
                 Data = response.Entity
             };
-            return ResultType.Result.Success<CreateCustomerCommand>("Customer created successfully", responses);
+            return Result.Success<CreateCustomerCommand>("Customer created successfully", responses);
         }
     }
 }

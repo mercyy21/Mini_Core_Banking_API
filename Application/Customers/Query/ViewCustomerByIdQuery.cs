@@ -19,16 +19,16 @@ namespace Application.Customers.CustomerQuery
             _context = context;
             _mapper = mapper;
         }
-        public async Task<Result> Handle(ViewCustomerByIdQuery query, CancellationToken cancellationToken)
+        public async Task<ResultType.Result> Handle(ViewCustomerByIdQuery query, CancellationToken cancellationToken)
         {
             //View Customer by ID
             Customer customer = await _context.Customers.FirstOrDefaultAsync(x => x.Id==query.CustomerId);
             if (customer == null)
             {
-                return Result.Failure<ViewCustomerByIdQuery>( "Customer does not exist");
+                return ResultType.Result.Failure<ViewCustomerByIdQuery>( "Customer does not exist");
             }
             CustomerResponseDTO customerDTO = _mapper.Map<CustomerResponseDTO>(customer);
-            return Result.Success<ViewCustomerByIdQuery>( "Customer returned successfully",customerDTO);
+            return ResultType.Result.Success<ViewCustomerByIdQuery>( "Customer returned successfully", customerDTO);
         }
     }
 }

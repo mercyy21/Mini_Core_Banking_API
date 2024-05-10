@@ -29,14 +29,14 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result response = await _mediator.Send(new EncryptCommand(signatureDTO));
+                Result response = await _mediator.Send(new EncryptCommand(signatureDTO));
                 return Ok(response);
 
             }
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message.ToString()));
+                return base.BadRequest(Result.Failure(ex.Message.ToString()));
             }
         }
         [HttpPost("/Decrypt")]
@@ -44,7 +44,7 @@ namespace API.Controllers
         {
             try
             {
-                Application.ResultType.Result response = await _mediator.Send(new DecryptCommand(signature));
+                Result response = await _mediator.Send(new DecryptCommand(signature));
                 if (!response.Succeeded)
                 {
                     return BadRequest(response);
@@ -54,7 +54,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
 
-                return base.BadRequest(Application.ResultType.Result.Failure(ex.Message));
+                return base.BadRequest(Result.Failure(ex.Message));
             }
         }
     }

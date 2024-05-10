@@ -6,18 +6,20 @@ using MediatR;
 
 namespace Application.TransactionHistory;
 
-public sealed record RecordTransactionCommand(TransactionHistoryDTO HistoryDTO) : IRequest<ResultType.Result>;
+public sealed record RecordTransactionCommand(TransactionHistoryDTO HistoryDTO) : IRequest<Result>;
 
-public sealed class RecordTransactionCommandHandler : IRequestHandler<RecordTransactionCommand, ResultType.Result>
+public sealed class RecordTransactionCommandHandler : IRequestHandler<RecordTransactionCommand, Result>
 {
     private readonly IMiniCoreBankingDbContext _context;
 
-    public async Task<ResultType.Result> Handle(RecordTransactionCommand command, CancellationToken cancellationToken)
+    public async Task<Result> Handle(RecordTransactionCommand command, CancellationToken cancellationToken)
     {
         Transaction transaction = new Transaction
         {
             TransactionType = command.HistoryDTO.TransactionType,
-            Narration = command.HistoryDTO.NarrationType,
+            TransactionTypeDesc = command.HistoryDTO.TransactionTypeDesc,
+            Narration = command.HistoryDTO.Narration,
+            NarrationDesc= command.HistoryDTO.NarrationDesc,
             Amount = command.HistoryDTO.Amount,
             Timestamp = DateTime.Now,
             CustomerId = command.HistoryDTO.CustomerId,
@@ -27,6 +29,6 @@ public sealed class RecordTransactionCommandHandler : IRequestHandler<RecordTran
 
         _context.Transactions.Add(transaction);
         await _context.SaveChangesAsync(cancellationToken);
-        return ResultType.Result.Success<RecordTransactionCommand>("Transaction recorded successfully", transaction);
+        return Result.Success<RecordTransactionCommand>("Transaction recorded successfully", transaction);
     }
 }

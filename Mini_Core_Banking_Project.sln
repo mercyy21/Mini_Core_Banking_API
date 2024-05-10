@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "Mini_Core_Banking_Project\API.csproj", "{975C8717-1DE1-4BDC-B6C4-63C9F17D3C92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{975C8717-1DE1-4BDC-B6C4-63C9F17D3C92}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mini_Core_Banking_Project.Test", "Mini_Core_Banking_Project.Test\Mini_Core_Banking_Project.Test.csproj", "{D1AE4F07-C4F0-4B39-9574-2FD36E86ABE6}"
 EndProject

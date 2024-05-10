@@ -5,9 +5,9 @@ using MediatR;
 
 namespace Application.Utility
 {
-    public sealed record EncryptCommand(TransactionDetailsDTO SignatureDTO) : IRequest<Result>;
+    public sealed record EncryptCommand(TransactionDetailsDTO SignatureDTO) : IRequest<ResultType.Result>;
 
-    public sealed class EncryptCommandHandler : IRequestHandler<EncryptCommand, Result>
+    public sealed class EncryptCommandHandler : IRequestHandler<EncryptCommand, ResultType.Result>
     {
         private readonly IEncrypt _encrypt;
 
@@ -16,11 +16,11 @@ namespace Application.Utility
             _encrypt = encrypt;
         }
 
-        public async Task<Result> Handle(EncryptCommand command, CancellationToken cancellationToken)
+        public async Task<ResultType.Result> Handle(EncryptCommand command, CancellationToken cancellationToken)
         {
             string combinedString = $"{command.SignatureDTO.AccountNumber}+{command.SignatureDTO.Email}";
             string encryptedSignature = _encrypt.Encrypt(combinedString);
-            return Result.Success<EncryptCommand>("Encryption Successful", encryptedSignature);
+            return ResultType.Result.Success<EncryptCommand>("Encryption Successful", encryptedSignature);
         }
     }
 }

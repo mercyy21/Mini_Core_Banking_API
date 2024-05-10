@@ -8,9 +8,9 @@ using Application.DTO;
 
 namespace Application.Customers.CustomerCommand
 {
-    public sealed record UpdateCustomerCommand(Guid CustomerId, CustomerDTO Customer) : IRequest<ResultType.Result>;
+    public sealed record UpdateCustomerCommand(Guid CustomerId, CustomerDTO Customer) : IRequest<Result>;
 
-    public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, ResultType.Result>
+    public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustomerCommand, Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -20,13 +20,13 @@ namespace Application.Customers.CustomerCommand
             _mapper = mapper;
         }
 
-        public async Task<ResultType.Result> Handle(UpdateCustomerCommand command, CancellationToken cancellationToken)
+        public async Task<Result> Handle(UpdateCustomerCommand command, CancellationToken cancellationToken)
         {
             //Update Customer
             Customer existingCustomer = await _context.Customers.FirstOrDefaultAsync(x => x.Id == command.CustomerId);
             if (existingCustomer == null)
             {
-                return ResultType.Result.Failure<UpdateCustomerCommand>("Customer does not exist");
+                return Result.Failure<UpdateCustomerCommand>("Customer does not exist");
             }
             existingCustomer.FirstName = command.Customer.FirstName;
             existingCustomer.LastName = command.Customer.LastName;
@@ -39,7 +39,7 @@ namespace Application.Customers.CustomerCommand
 
             //Response
             CustomerResponseDTO responseDTO = _mapper.Map<CustomerResponseDTO>(existingCustomer);
-            return ResultType.Result.Success<UpdateCustomerCommand>("Customer Updated Successfully",responseDTO);
+            return Result.Success<UpdateCustomerCommand>("Customer Updated Successfully",responseDTO);
         }
 
     }

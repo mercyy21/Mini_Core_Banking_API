@@ -32,6 +32,7 @@ namespace Application.Accounts.AccountCommand
             existingAccount.ClosedAt = DateTime.Now;
             existingAccount.UpdatedAt = DateTime.Now;
             existingAccount.Status = Status.Inactive;
+            existingAccount.StatusDesc= Status.Inactive.ToString();
             _context.Accounts.Update(existingAccount);
             await _context.SaveChangesAsync(cancellationToken);
             return Result.Success<DeactivateAccountCommand>("Account Deactivated");

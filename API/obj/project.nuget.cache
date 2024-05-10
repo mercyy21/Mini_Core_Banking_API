@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iAShQVJF/0libyyImAuXPb3TreJGqCBIcCsCSu7iDWWhQKTxIJwcc3YFSX0p1nNip/hg8OSsqFAGoamK6rngpw==",
+  "dgSpecHash": "3BXiMX8qchv2S90twsdieJgYGi26+mxaDZk6UTZNmpIEP3Qt3dmVwEIbyOzS9+gCJLVAyY2m4S6bDYGQu0IJaQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj",
+  "projectFilePath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\MERCY AWOPETU\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

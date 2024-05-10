@@ -31,6 +31,7 @@ namespace Application.Accounts.AccountCommand
 
             existingAccount.UpdatedAt = DateTime.Now;
             existingAccount.Status = Status.Active;
+            existingAccount.StatusDesc=Status.Active.ToString();
             _context.Accounts.Update(existingAccount);
             await _context.SaveChangesAsync(cancellationToken);
             return Result.Success<ActivateAccountCommand>("Account activated");

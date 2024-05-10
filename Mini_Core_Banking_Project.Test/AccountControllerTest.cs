@@ -52,7 +52,7 @@ namespace API.Test
                 Status = accounts[0].Status
             };
 
-            Result response = Result.Success<CreateAccountCommand>("Account created successfully", accountResponseDTO);
+            Application.ResultType.Result response = Application.ResultType.Result.Success<CreateAccountCommand>("Account created successfully", accountResponseDTO);
             //Act
             CreateAccountCommand request = new CreateAccountCommand(accountDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -78,7 +78,7 @@ namespace API.Test
                 Id = accounts[0].Id,
                 Status= accounts[0].Status
             };
-            Result response = Result.Success<ViewCustomersAccountQuery>("Customers Account returned successfully", accountResponseDTO);
+            Application.ResultType.Result response = Application.ResultType.Result.Success<ViewCustomersAccountQuery>("Customers Account returned successfully", accountResponseDTO);
             //Act
             ViewCustomersAccountQuery request = new ViewCustomersAccountQuery(customerId);
             _mockMediator.Setup(x=> x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -96,7 +96,7 @@ namespace API.Test
             //Arrange
             Guid accountId = Guid.NewGuid();
 
-            Result response = Result.Success<ActivateAccountCommand>("Account Activated");
+            Application.ResultType.Result response = Application.ResultType.Result.Success<ActivateAccountCommand>("Account Activated");
             //Act
             ActivateAccountCommand request = new ActivateAccountCommand(accountId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -113,7 +113,7 @@ namespace API.Test
         {
             //Arrange
             Guid accountId = Guid.NewGuid();
-            Result response = Result.Success<DeactivateAccountCommand>("Account Deactivated");
+            Application.ResultType.Result response = Application.ResultType.Result.Success<DeactivateAccountCommand>("Account Deactivated");
 
             //Act
             DeactivateAccountCommand request = new DeactivateAccountCommand(accountId);
@@ -137,7 +137,7 @@ namespace API.Test
                 TransactionDetails = "Ughfol193ejak=",
                 Amount = 200
             };
-            Result response = Result.Success<DepositCommand>("Amount successfully deposited");
+            Application.ResultType.Result response = Application.ResultType.Result.Success<DepositCommand>("Amount successfully deposited");
             //Act
             DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -158,7 +158,7 @@ namespace API.Test
                 TransactionDetails = "Ughfol193ejak=",
                 Amount = 50
             };
-            Result response = Result.Success<WithdrawCommand>("Amount successfully withdrawn");
+            Application.ResultType.Result response = Application.ResultType.Result.Success<WithdrawCommand>("Amount successfully withdrawn");
             //Act
             WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -174,14 +174,14 @@ namespace API.Test
         {
             //Arrange 
             Guid customerId = Guid.NewGuid();
-            Result response = Result.Success<DeleteAccountCommand>("Account Deleted Successfully");
+            Application.ResultType.Result response = Application.ResultType.Result.Success<DeleteAccountCommand>("Account Deleted Successfully");
 
             //Act
             DeleteAccountCommand request = new DeleteAccountCommand(customerId);
             _mockMediator.Setup(x=> x.Send(request, CancellationToken.None)).ReturnsAsync(response);
             IActionResult result =await _accountController.DeleteAccount(customerId);
             OkObjectResult? resultType = result as OkObjectResult;
-            Result actualResult = resultType.Value as Result;
+            Application.ResultType.Result actualResult = resultType.Value as Application.ResultType.Result;
 
             //Assert
             Assert.NotNull(result);
@@ -200,7 +200,7 @@ namespace API.Test
                 CustomerId = Guid.NewGuid(),
                 AccountType = AccountType.Savings,
             };
-            Result response = Result.Failure<CreateAccountCommand>("Customer already has an account");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<CreateAccountCommand>("Customer already has an account");
             //Act
             CreateAccountCommand request = new CreateAccountCommand(accountDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -220,7 +220,7 @@ namespace API.Test
                 CustomerId = Guid.NewGuid(),
                 AccountType = AccountType.Savings,
             };
-            Result response = Result.Failure<CreateAccountCommand>("Customer Does Not Exist");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<CreateAccountCommand>("Customer Does Not Exist");
             //Act
             CreateAccountCommand request = new CreateAccountCommand(accountDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -236,7 +236,7 @@ namespace API.Test
         {
             //Arrange
             Guid customerId = Guid.NewGuid();
-            Result response = Result.Failure<ViewCustomersAccountQuery>("Account does not exist");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<ViewCustomersAccountQuery>("Account does not exist");
             //Act
             ViewCustomersAccountQuery request = new ViewCustomersAccountQuery(customerId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -253,7 +253,7 @@ namespace API.Test
         {
             //Arrange
             Guid accountId = Guid.NewGuid();
-            Result response = Result.Failure<ActivateAccountCommand>("Account Does Not Exist");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<ActivateAccountCommand>("Account Does Not Exist");
 
             //Act
             ActivateAccountCommand request = new ActivateAccountCommand(accountId);
@@ -270,7 +270,7 @@ namespace API.Test
         {
             //Arrange
             Guid accountId = Guid.NewGuid();
-            Result response = Result.Failure<DeactivateAccountCommand>("Account Does Not Exist");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<DeactivateAccountCommand>("Account Does Not Exist");
             //Act
             DeactivateAccountCommand request = new DeactivateAccountCommand(accountId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -290,7 +290,7 @@ namespace API.Test
                 TransactionDetails = "Pghfsl193ejaw=",
                 Amount = 200
             };
-            Result response = Result.Failure<DepositCommand>("Account does not exist");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<DepositCommand>("Account does not exist");
             //Act
             DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -311,7 +311,7 @@ namespace API.Test
                 TransactionDetails = "Ughfol193ejak=",
                 Amount = 0
             };
-            Result response = Result.Failure<DepositCommand>("Amount must be greater than zero");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<DepositCommand>("Amount must be greater than zero");
             //Act
             DepositCommand request = new DepositCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -332,7 +332,7 @@ namespace API.Test
                 TransactionDetails = "Pghfsl193ejaw=",
                 Amount = 200
             };
-            Result response = Result.Failure<WithdrawCommand>("Account does not exist");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<WithdrawCommand>("Account does not exist");
             //Act
             WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -352,7 +352,7 @@ namespace API.Test
                 TransactionDetails = "Ughfol193ejak=",
                 Amount = 200000
             };
-            Result response = Result.Failure<WithdrawCommand>("Amount exceeds balance");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<WithdrawCommand>("Amount exceeds balance");
             //Act
             WithdrawCommand request = new WithdrawCommand(transactDTO);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
@@ -369,13 +369,13 @@ namespace API.Test
         {
             //Arrange 
             Guid customerId = Guid.NewGuid();
-            Result response = Result.Failure<DeleteAccountCommand>("Account does not exist");
+            Application.ResultType.Result response = Application.ResultType.Result.Failure<DeleteAccountCommand>("Account does not exist");
             //Act
             DeleteAccountCommand request = new DeleteAccountCommand(customerId);
             _mockMediator.Setup(x => x.Send(request, CancellationToken.None)).ReturnsAsync(response);
             IActionResult result =await _accountController.DeleteAccount(customerId);
             BadRequestObjectResult? resultType = result as BadRequestObjectResult;
-            Result actualResult = resultType.Value as Result;
+            Application.ResultType.Result actualResult = resultType.Value as Application.ResultType.Result;
 
             //Assert
             Assert.NotNull(result);

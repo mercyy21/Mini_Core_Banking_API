@@ -9,9 +9,9 @@ using Application.ResultType;
 
 namespace Application.Customers.CustomerQuery
 {
-    public sealed record ViewCustomersQuery() : IRequest<ResultType.Result>;
+    public sealed record ViewCustomersQuery() : IRequest<Result>;
 
-    public sealed class ViewCustomerQueryHandler : IRequestHandler<ViewCustomersQuery, ResultType.Result>
+    public sealed class ViewCustomerQueryHandler : IRequestHandler<ViewCustomersQuery, Result>
     {
         private readonly IMiniCoreBankingDbContext _context;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace Application.Customers.CustomerQuery
             _mapper = mapper;
         }
 
-        public async Task<ResultType.Result> Handle(ViewCustomersQuery query, CancellationToken cancellationToken)
+        public async Task<Result> Handle(ViewCustomersQuery query, CancellationToken cancellationToken)
         {
             //View Customer
 

@@ -1,56 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|Application\\Application.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\application\\customers\\command\\createcustomercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|Application\\Application.csproj|solutionrelative:application\\customers\\command\\createcustomercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\domain\\domain\\entity\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|solutionrelative:domain\\domain\\entity\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\domain\\domain\\entity\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|solutionrelative:domain\\domain\\entity\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\domain\\domain\\entity\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|solutionrelative:domain\\domain\\entity\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\domain\\domain\\enums\\transactiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|solutionrelative:domain\\domain\\enums\\transactiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\domain\\domain\\enums\\narrationtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|solutionrelative:domain\\domain\\enums\\narrationtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\domain\\domain\\entity\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A737F83-E072-4AAD-A969-36CC99C9ED7C}|Domain\\Domain.csproj|solutionrelative:domain\\domain\\entity\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|Application\\Application.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\application\\interfaces\\iminicorebankingdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|Application\\Application.csproj|solutionrelative:application\\interfaces\\iminicorebankingdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8C6E7A8-4AFA-4887-9982-79F0F4FA29B6}|Infrastructure\\Infrastructure.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\infrastructure\\dbcontext\\minicorebankingdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8C6E7A8-4AFA-4887-9982-79F0F4FA29B6}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\dbcontext\\minicorebankingdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|Application\\Application.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\application\\customers\\command\\updatecustomercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|Application\\Application.csproj|solutionrelative:application\\customers\\command\\updatecustomercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{975C8717-1DE1-4BDC-B6C4-63C9F17D3C92}|API\\API.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\api\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{975C8717-1DE1-4BDC-B6C4-63C9F17D3C92}|API\\API.csproj|solutionrelative:api\\controllers\\customercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|Application\\Application.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\application\\customers\\command\\deletecustomercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|Application\\Application.csproj|solutionrelative:application\\customers\\command\\deletecustomercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -58,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -77,160 +28,8 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Entity\\Customer.cs",
-              "RelativeDocumentMoniker": "Domain\\Domain\\Entity\\Customer.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Entity\\Customer.cs",
-              "RelativeToolTip": "Domain\\Domain\\Entity\\Customer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAIwAwAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:49:18.457Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Account.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Entity\\Account.cs",
-              "RelativeDocumentMoniker": "Domain\\Domain\\Entity\\Account.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Entity\\Account.cs",
-              "RelativeToolTip": "Domain\\Domain\\Entity\\Account.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:15:45.75Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateCustomerCommand.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Customers\\Command\\CreateCustomerCommand.cs",
-              "RelativeDocumentMoniker": "Application\\Customers\\Command\\CreateCustomerCommand.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Customers\\Command\\CreateCustomerCommand.cs",
-              "RelativeToolTip": "Application\\Customers\\Command\\CreateCustomerCommand.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAAA8AAABkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:26:59.375Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TransactionType.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Enums\\TransactionType.cs",
-              "RelativeDocumentMoniker": "Domain\\Domain\\Enums\\TransactionType.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Enums\\TransactionType.cs",
-              "RelativeToolTip": "Domain\\Domain\\Enums\\TransactionType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:57:11.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Base.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Entity\\Base.cs",
-              "RelativeDocumentMoniker": "Domain\\Domain\\Entity\\Base.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Entity\\Base.cs",
-              "RelativeToolTip": "Domain\\Domain\\Entity\\Base.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:49:24.211Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NarrationType.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Enums\\NarrationType.cs",
-              "RelativeDocumentMoniker": "Domain\\Domain\\Enums\\NarrationType.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Enums\\NarrationType.cs",
-              "RelativeToolTip": "Domain\\Domain\\Enums\\NarrationType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:57:13.281Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IMiniCoreBankingDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Interfaces\\IMiniCoreBankingDbContext.cs",
-              "RelativeDocumentMoniker": "Application\\Interfaces\\IMiniCoreBankingDbContext.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Interfaces\\IMiniCoreBankingDbContext.cs",
-              "RelativeToolTip": "Application\\Interfaces\\IMiniCoreBankingDbContext.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAAAAkAAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:29:07.259Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Transaction.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Entity\\Transaction.cs",
-              "RelativeDocumentMoniker": "Domain\\Domain\\Entity\\Transaction.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain\\Entity\\Transaction.cs",
-              "RelativeToolTip": "Domain\\Domain\\Entity\\Transaction.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAAABMAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:12:39.59Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UpdateCustomerCommand.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Customers\\Command\\UpdateCustomerCommand.cs",
-              "RelativeDocumentMoniker": "Application\\Customers\\Command\\UpdateCustomerCommand.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Customers\\Command\\UpdateCustomerCommand.cs",
-              "RelativeToolTip": "Application\\Customers\\Command\\UpdateCustomerCommand.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:25:14.753Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MiniCoreBankingDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Infrastructure\\DBContext\\MiniCoreBankingDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\DBContext\\MiniCoreBankingDbContext.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Infrastructure\\DBContext\\MiniCoreBankingDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\DBContext\\MiniCoreBankingDbContext.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAAAgAAABFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:13:55.172Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CustomerController.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\API\\Controllers\\CustomerController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\CustomerController.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\API\\Controllers\\CustomerController.cs",
-              "RelativeToolTip": "API\\Controllers\\CustomerController.cs",
-              "ViewState": "AQIAAO4AAAAAAAAAAAAAAPgAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T12:02:47.775Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "DeleteCustomerCommand.cs",
-              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Customers\\Command\\DeleteCustomerCommand.cs",
-              "RelativeDocumentMoniker": "Application\\Customers\\Command\\DeleteCustomerCommand.cs",
-              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Customers\\Command\\DeleteCustomerCommand.cs",
-              "RelativeToolTip": "Application\\Customers\\Command\\DeleteCustomerCommand.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-10T11:43:55.43Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             }
           ]
         }

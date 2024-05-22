@@ -4,10 +4,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 COPY ["/src/Api/Api.csproj", "Api/"]
+COPY ["/src/Api/Api.csproj.user", "Api/"]
 COPY ["/src/Api/Program.cs", "Api/"]
-COPY ["/src/Domain/Domain.csproj", "Domain/"]
-COPY ["/src/Application/Application.csproj", "Application/"]
-COPY ["/src/Infrastructure/Infrastructure.csproj", "Infrastructure/"]
+
+#COPY ["/src/Domain/Domain.csproj", "Domain/"]
+#COPY ["/src/Application/Application.csproj", "Application/"]
+#COPY ["/src/Infrastructure/Infrastructure.csproj", "Infrastructure/"]
 
 RUN dotnet restore "Api/Api.csproj"
 

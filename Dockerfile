@@ -3,28 +3,23 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 WORKDIR /app
 
-COPY ["/src/Api/Api.csproj", "Api/"]
-COPY ["/src/Api/Api.csproj.user", "Api/"]
-COPY ["/src/Api/Program.cs", "Api/"]
+COPY ["/src/API/API.csproj", "API/"]
+COPY ["/src/Application/Application.csproj", "Application/"]
+COPY ["/src/Infrastructure/Infrastructure.csproj", "Infrastructure/"]
+COPY ["/src/Domain/Domain.csproj", "Domain/"]
 
-#COPY ["/src/Domain/Domain.csproj", "Domain/"]
-#COPY ["/src/Application/Application.csproj", "Application/"]
-#COPY ["/src/Infrastructure/Infrastructure.csproj", "Infrastructure/"]
-
-RUN dotnet restore "Api/Api.csproj"
+RUN dotnet restore "API/API.csproj"
 
 COPY . .
-WORKDIR /app/Api
+WORKDIR /app/API
 
-RUN dotnet build "Api.csproj" -c Release -o /app/build
-RUN dotnet publish "Api.csproj" -c Release -o /app/publish
+RUN dotnet build "API.csproj" -c Release -o /app/build
+RUN dotnet publish "API.csproj" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
-ENV TZ Africa/Lagos
-ENV ASPNETCORE_URLS=http://+:8080
 WORKDIR /app
 EXPOSE 8080
 
 COPY --from=build /app/publish .
 
-ENTRYPOINT ["dotnet", "Api.dll"]
+ENTRYPOINT ["dotnet", "API.dll"]

@@ -17,13 +17,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Docker Login
-        uses: azure/docker-login@v1
+        uses: azure/docker-login@v3
         with:
-          login-server: ${{ secrets.AZURE_URL }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
+          login-server: bankingcore.azurecr.io
+          username: bankingcore
+          password: E8tymgonmAH+Ha71ZhCrXAjKc5dHSn4h2myARvHqFd+ACRC7DxrU
 
       - run: |
           docker build -t minicorebanking .
-          docker tag minicorebanking ${{ secrets.AZURE_URL }}/minicorebanking:${{ github.sha }}
-          docker push ${{ secrets.AZURE_URL }}/minicorebanking:${{ github.sha }}
+          # docker tag minicorebanking ${{ secrets.AZURE_URL }}/minicorebanking:${{ github.sha }}
+          # docker push ${{ secrets.AZURE_URL }}/minicorebanking:${{ github.sha }}

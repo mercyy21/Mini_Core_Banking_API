@@ -24,6 +24,5 @@ jobs:
           password: E8tymgonmAH+Ha71ZhCrXAjKc5dHSn4h2myARvHqFd+ACRC7DxrU
 
       - run: |
-          docker build -t minicorebanking .
-          # docker tag minicorebanking ${{ secrets.AZURE_URL }}/minicorebanking:${{ github.sha }}
-          # docker push ${{ secrets.AZURE_URL }}/minicorebanking:${{ github.sha }}
+          docker build . -t bankingcore.azurecr.io/minicorebanking:${{ github.sha }}
+          docker push bankingcore.azurecr.io/minicorebanking:${{ github.sha }}

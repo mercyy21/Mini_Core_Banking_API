@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{975C8717-1DE1-4BDC-B6C4-63C9F17D3C92}|src\\API\\API.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\src\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{975C8717-1DE1-4BDC-B6C4-63C9F17D3C92}|src\\API\\API.csproj|solutionrelative:src\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{975C8717-1DE1-4BDC-B6C4-63C9F17D3C92}|src\\API\\API.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\src\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{975C8717-1DE1-4BDC-B6C4-63C9F17D3C92}|src\\API\\API.csproj|solutionrelative:src\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,6 +39,31 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "API.csproj",
+              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj",
+              "RelativeDocumentMoniker": "src\\API\\API.csproj",
+              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj",
+              "RelativeToolTip": "src\\API\\API.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-27T15:51:31.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\Program.cs",
+              "RelativeDocumentMoniker": "src\\API\\Program.cs",
+              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\Program.cs",
+              "RelativeToolTip": "src\\API\\Program.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAABMAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T15:35:27.346Z",
+              "EditorCaption": ""
             }
           ]
         }

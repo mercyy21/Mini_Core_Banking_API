@@ -15,9 +15,9 @@ using Application.Interfaces;
 using Infrastructure.UtilityService;
 using Infrastructure.PasswordHasher;
 
-internal class Program
+public class Program
 {
-    private static void Main(string[] args)
+    public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 

@@ -10382,8 +10382,8 @@
     },
     "API/1.0.0": {
       "type": "project",
-      "path": "../API/API.csproj",
-      "msbuildProject": "../API/API.csproj"
+      "path": "../src/API/API.csproj",
+      "msbuildProject": "../src/API/API.csproj"
     },
     "Application/1.0.0": {
       "type": "project",
@@ -10392,13 +10392,13 @@
     },
     "Domain/1.0.0": {
       "type": "project",
-      "path": "../Domain/Domain.csproj",
-      "msbuildProject": "../Domain/Domain.csproj"
+      "path": "../src/Domain/Domain.csproj",
+      "msbuildProject": "../src/Domain/Domain.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../Infrastructure/Infrastructure.csproj",
-      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
+      "path": "../src/Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../src/Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -10458,6 +10458,15 @@
             },
             "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj": {
               "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj"
+            },
+            "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj": {
+              "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj"
+            },
+            "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Application\\Application.csproj"
+            },
+            "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Domain\\Domain.csproj"
             }
           }
         }

@@ -2071,19 +2071,6 @@
           "API.dll": {}
         }
       },
-      "Application/1.0.0": {
-        "dependencies": {
-          "AutoMapper": "13.0.1",
-          "BCrypt.Net-Next": "4.0.3",
-          "Domain": "1.0.0",
-          "FluentValidation.AspNetCore": "11.3.0",
-          "MediatR": "12.2.0",
-          "Newtonsoft.Json": "13.0.1"
-        },
-        "runtime": {
-          "Application.dll": {}
-        }
-      },
       "Domain/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.2"
@@ -3378,11 +3365,6 @@
       "hashPath": "xunit.runner.visualstudio.2.4.5.nupkg.sha512"
     },
     "API/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

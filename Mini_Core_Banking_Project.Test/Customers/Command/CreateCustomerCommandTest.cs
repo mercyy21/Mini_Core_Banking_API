@@ -1,16 +1,15 @@
-﻿using Application.Accounts.AccountCommand;
-using Application.Customers.CustomerCommand;
-using AutoMapper;
-using Application.DTO;
-using Application.Enums;
+﻿using AutoMapper;
 using MediatR;
 using API.Test.Generate;
 using API.Test.Services;
 using Moq;
-using Application.Interfaces;
-using Application.Domain.Enums;
-using Application.ResultType;
 using Castle.Core.Logging;
+using Application.Interfaces;
+using Application.DTO;
+using Application.Enums;
+using Application.Domain.Enums;
+using Application.Customers.CustomerCommand;
+using Application.Accounts.AccountCommand;
 
 namespace API.Test.Customers.Command
 {
@@ -37,7 +36,7 @@ namespace API.Test.Customers.Command
             //Arrange
             var mock = MockDBContext.GetQueryableMockDbSet(FakeCustomer.GenerateCustomer());
             _contextMock.Setup(x => x.Customers).Returns(mock);
-            CreateCustomerDTO CreateCustomerDTO = new CreateCustomerDTO { 
+            CreateCustomerDTO createCustomerDTO = new CreateCustomerDTO { 
             FirstName="Mercy",
             LastName="Johnson",
             Email="cynthia2019@gmail.com",
@@ -50,7 +49,7 @@ namespace API.Test.Customers.Command
             AccountDTO newAccount = new AccountDTO
             {
                 CustomerId = Guid.NewGuid(),
-                AccountType = CreateCustomerDTO.AccountType
+                AccountType = createCustomerDTO.AccountType
             };
             AccountResponseDTO accountResponseDTO = new AccountResponseDTO
             {
@@ -62,7 +61,7 @@ namespace API.Test.Customers.Command
 
             Application.ResultType.Result response = Application.ResultType.Result.Success<CreateAccountCommand>("Account created successfully", accountResponseDTO);
             //Act
-            var request = new CreateCustomerCommand(CreateCustomerDTO);
+            var request = new CreateCustomerCommand(createCustomerDTO);
             _mediator.Setup(x => x.Send(It.IsAny<CreateAccountCommand>(),It.IsAny<CancellationToken>())).ReturnsAsync(response);
             var handler = new CreateCustomerCommandHandler(_contextMock.Object, _mapper.Object, _mediator.Object,_mockHasher.Object);
             var result = await handler.Handle(request, CancellationToken.None);

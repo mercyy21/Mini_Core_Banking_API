@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Mini_Core_Banking_Project.UnitTests
-build_property.ProjectDir = C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.Test\
+build_property.ProjectDir = C:\Users\MERCY AWOPETU\source\repos\Mini_Core_Banking_Project\Mini_Core_Banking_Project.UnitTests\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

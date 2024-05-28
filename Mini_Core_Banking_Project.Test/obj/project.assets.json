@@ -10387,8 +10387,8 @@
     },
     "Application/1.0.0": {
       "type": "project",
-      "path": "../Application/Application.csproj",
-      "msbuildProject": "../Application/Application.csproj"
+      "path": "../src/Application/Application.csproj",
+      "msbuildProject": "../src/Application/Application.csproj"
     },
     "Domain/1.0.0": {
       "type": "project",
@@ -10447,18 +10447,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\API\\API.csproj": {
-              "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\API\\API.csproj"
-            },
-            "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Application\\Application.csproj"
-            },
-            "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Domain\\Domain.csproj"
-            },
-            "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj": {
-              "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\Mini_Core_Banking_Project\\API.csproj"
-            },
             "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj": {
               "projectPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj"
             },

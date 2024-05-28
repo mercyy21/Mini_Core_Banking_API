@@ -8,11 +8,11 @@ using Application.Accounts.AccountCommand;
 using Application.Accounts.AccountQuery;
 using Application.Domain.Entity;
 using Application.Domain.Enums;
-using Application.ResultType;
+using Xunit;
 
 namespace API.Test
 {
-   public class AccountControllerTest
+    public class AccountControllerTest
     {
         private readonly Mock<IMediator> _mockMediator;
         private readonly AccountController _accountController;

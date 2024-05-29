@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D1AE4F07-C4F0-4B39-9574-2FD36E86ABE6}|tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\tests\\mini_core_banking_project.unittests\\mini_core_banking_project.unittests.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{D1AE4F07-C4F0-4B39-9574-2FD36E86ABE6}|tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj|solutionrelative:tests\\mini_core_banking_project.unittests\\mini_core_banking_project.unittests.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|src\\Application\\Application.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\src\\application\\application.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{C6F26412-3207-4D51-8BA5-C5B2C2A4E8C3}|src\\Application\\Application.csproj|solutionrelative:src\\application\\application.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D1AE4F07-C4F0-4B39-9574-2FD36E86ABE6}|tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj|c:\\users\\mercy awopetu\\source\\repos\\mini_core_banking_project\\tests\\mini_core_banking_project.unittests\\mini_core_banking_project.unittests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{D1AE4F07-C4F0-4B39-9574-2FD36E86ABE6}|tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj|solutionrelative:tests\\mini_core_banking_project.unittests\\mini_core_banking_project.unittests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -52,6 +60,30 @@
               "RelativeDocumentMoniker": "tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
               "RelativeToolTip": "tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-29T10:23:22.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Application",
+              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Application\\Application.csproj",
+              "RelativeDocumentMoniker": "src\\Application\\Application.csproj",
+              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Application\\Application.csproj",
+              "RelativeToolTip": "src\\Application\\Application.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-29T10:21:12.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Mini_Core_Banking_Project.UnitTests.csproj",
+              "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
+              "RelativeDocumentMoniker": "tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
+              "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
+              "RelativeToolTip": "tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-05-29T10:12:41.152Z",
@@ -59,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Application.csproj",
               "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Application\\Application.csproj",
               "RelativeDocumentMoniker": "src\\Application\\Application.csproj",
@@ -72,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "API.csproj",
               "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj",
               "RelativeDocumentMoniker": "src\\API\\API.csproj",

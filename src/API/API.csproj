@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
 	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	  
 	  <NoWarn>$(NoWarn);1591</NoWarn>
 
   </PropertyGroup>

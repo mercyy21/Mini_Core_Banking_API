@@ -2,15 +2,11 @@
 using Application.TransactionHistory;
 using Application.Domain.Entity;
 using Application.DTO;
-using Infrastructure.DBContext;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using API.Test.Generate;
 using API.Test.Services;
 using Moq;
-using System.Security.Claims;
 using Application.Interfaces;
-using Application.ResultType;
 
 namespace API.Test.Accounts.Command;
 

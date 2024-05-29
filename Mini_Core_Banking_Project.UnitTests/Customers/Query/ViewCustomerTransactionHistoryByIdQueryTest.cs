@@ -1,5 +1,4 @@
-﻿using Application.Customers.CustomerQuery;
-using Application.Customers.Query;
+﻿using Application.Customers.Query;
 using API.Test.Generate;
 using API.Test.Services;
 using Moq;

@@ -3,7 +3,6 @@ using API.Test.Generate;
 using API.Test.Services;
 using Moq;
 using Application.Interfaces;
-using Xunit;
 
 namespace API.Test.Accounts.Command;
 

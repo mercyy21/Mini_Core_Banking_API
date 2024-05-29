@@ -1,8 +1,6 @@
 ﻿using Application.Customers.CustomerCommand;
 using AutoMapper;
 using Application.DTO;
-using Application.Enums;
-using Infrastructure.DBContext;
 using API.Test.Generate;
 using API.Test.Services;
 using Moq;

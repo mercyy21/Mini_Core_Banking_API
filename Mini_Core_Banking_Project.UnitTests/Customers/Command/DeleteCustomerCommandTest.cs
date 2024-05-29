@@ -1,13 +1,10 @@
 ﻿using Application.Accounts.AccountCommand;
 using Application.Customers.CustomerCommand;
-using Application.DTO;
-using Infrastructure.DBContext;
 using MediatR;
 using API.Test.Generate;
 using API.Test.Services;
 using Moq;
 using Application.Interfaces;
-using Application.ResultType;
 
 namespace API.Test.Customers.Command;
 

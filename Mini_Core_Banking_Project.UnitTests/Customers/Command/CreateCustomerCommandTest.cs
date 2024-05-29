@@ -19,7 +19,6 @@ namespace API.Test.Customers.Command
         private readonly Mock<IMapper> _mapper;
         private readonly Mock<IMiniCoreBankingDbContext> _contextMock;
         private readonly Mock<IHasher> _mockHasher;
-        private readonly Mock<ILogger> _loggerMock;
 
 
         public CreateCustomerCommandTest()
@@ -28,7 +27,6 @@ namespace API.Test.Customers.Command
             _mapper = new Mock<IMapper>();
             _contextMock = new Mock<IMiniCoreBankingDbContext>();
             _mockHasher = new Mock<IHasher>();
-            _loggerMock = new Mock<ILogger>();
         }
         [Fact]
         public async Task CreateCustomerSuccessAsync()

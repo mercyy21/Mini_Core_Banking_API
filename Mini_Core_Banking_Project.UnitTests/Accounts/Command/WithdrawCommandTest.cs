@@ -3,12 +3,10 @@ using Application.TransactionHistory;
 using Application.Domain.Entity;
 using Application.DTO;
 using Application.Interfaces;
-using Infrastructure.DBContext;
 using MediatR;
 using API.Test.Generate;
 using API.Test.Services;
 using Moq;
-using Application.ResultType;
 
 namespace API.Test.Accounts.Command;
 

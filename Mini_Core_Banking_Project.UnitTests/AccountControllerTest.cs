@@ -8,7 +8,6 @@ using Application.Accounts.AccountCommand;
 using Application.Accounts.AccountQuery;
 using Application.Domain.Entity;
 using Application.Domain.Enums;
-using Xunit;
 
 namespace API.Test
 {

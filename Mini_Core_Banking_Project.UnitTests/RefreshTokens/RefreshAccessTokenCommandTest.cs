@@ -1,5 +1,4 @@
 ﻿using Application.RefreshTokens;
-using AutoFixture;
 using API.Test.Generate;
 using API.Test.Services;
 using Moq;

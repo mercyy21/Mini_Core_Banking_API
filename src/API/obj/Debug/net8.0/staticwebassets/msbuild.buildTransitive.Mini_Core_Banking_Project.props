@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Mini_Core_Banking_Project.props" />
-</Project>

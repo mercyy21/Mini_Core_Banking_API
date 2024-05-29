@@ -55,7 +55,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Mini_Core_Banking_Project.UnitTests",
+              "Title": "Mini_Core_Banking_Project.UnitTests.csproj",
               "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
               "RelativeDocumentMoniker": "tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\tests\\Mini_Core_Banking_Project.UnitTests\\Mini_Core_Banking_Project.UnitTests.csproj",
@@ -68,7 +68,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Infrastructure",
+              "Title": "Infrastructure.csproj",
               "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Infrastructure\\Infrastructure.csproj",
               "RelativeDocumentMoniker": "src\\Infrastructure\\Infrastructure.csproj",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Infrastructure\\Infrastructure.csproj",
@@ -81,7 +81,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Domain",
+              "Title": "Domain.csproj",
               "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Domain\\Domain.csproj",
               "RelativeDocumentMoniker": "src\\Domain\\Domain.csproj",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Domain\\Domain.csproj",
@@ -94,7 +94,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Application",
+              "Title": "Application.csproj",
               "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Application\\Application.csproj",
               "RelativeDocumentMoniker": "src\\Application\\Application.csproj",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\Application\\Application.csproj",
@@ -107,7 +107,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "API",
+              "Title": "API.csproj",
               "DocumentMoniker": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj",
               "RelativeDocumentMoniker": "src\\API\\API.csproj",
               "ToolTip": "C:\\Users\\MERCY AWOPETU\\source\\repos\\Mini_Core_Banking_Project\\src\\API\\API.csproj",
